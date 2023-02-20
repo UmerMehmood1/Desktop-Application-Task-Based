@@ -1,0 +1,515 @@
+def __init__(self,writer_id,maximized,Evaluation_points,Writer_Name,Writer_Daily_WordCount,Writer_Monthly_WordCount,Writer_Image,Writer_Email,Writer_Contact_No,Writer_Gender,Writer_Age,Writer_Biography,Writer_Role, Writer_Team_Name):
+                self.Writer_Team_Name = Writer_Team_Name
+                self.writer_id = int(writer_id)
+                self.MainWindow = QtWidgets.QMainWindow()
+                from win32api import GetSystemMetrics
+                self.MainWindow.resize(int(GetSystemMetrics(0)/1.5),int(GetSystemMetrics(1)/1.5))
+                self.MainWindow.setAttribute(Qt.WA_TranslucentBackground)
+                self.MainWindow.setWindowFlag(Qt.FramelessWindowHint)
+                self.maximized = maximized
+                self.Evaluation_points = Evaluation_points
+                self.Writer_Name = Writer_Name
+                self.Writer_Daily_WordCount = Writer_Daily_WordCount
+                self.Writer_Monthly_WordCount = Writer_Monthly_WordCount
+                self.Writer_Image = Writer_Image
+                self.Writer_Email = Writer_Email
+                self.Writer_Contact_No = Writer_Contact_No
+                self.Writer_Gender = Writer_Gender
+                self.Writer_Age = Writer_Age
+                self.Writer_Biography = Writer_Biography
+                self.Writer_Role = Writer_Role
+                self.dark_mode = False
+        def dark_mode_on(self):
+                if not self.dark_mode:
+                        self.RightForm.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.widget_4.setStyleSheet("color:black;")
+                        icon = QtGui.QIcon()
+                        icon.addPixmap(QtGui.QPixmap(":/Icons/Icons/moon.svg"),
+                                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                        self.pushButton_6.setIcon(icon)
+                        self.pushButton_4.setIcon(icon)
+                        self.pushButton_7.setIcon(icon)
+                        self.pushButton_14.setIcon(icon)
+                        self.pushButton_16.setIcon(icon)
+                        self.pushButton_17.setIcon(icon)
+                        self.pushButton_18.setIcon(icon)
+                        self.pushButton_19.setIcon(icon)
+                        self.pushButton_20.setIcon(icon)
+                        self.pushButton_6.setStyleSheet("#pushButton_6 {padding: 0px;} \n #pushButton_6:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_4.setStyleSheet("#pushButton_4 {padding: 0px;} \n #pushButton_4:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_7.setStyleSheet("#pushButton_7 {padding: 0px;} \n #pushButton_7:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_14.setStyleSheet("#pushButton_14 {padding: 0px;} \n #pushButton_14:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_16.setStyleSheet("#pushButton_16 {padding: 0px;} \n #pushButton_16:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_17.setStyleSheet("#pushButton_17 {padding: 0px;} \n #pushButton_17:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_18.setStyleSheet("#pushButton_18 {padding: 0px;} \n #pushButton_18:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_19.setStyleSheet("#pushButton_19 {padding: 0px;} \n #pushButton_19:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_20.setStyleSheet("#pushButton_20 {padding: 0px;} \n #pushButton_20:hover{border-radius:5px; background-color: #2596be;}")
+                        self.ContentOnEvaluatePage.setStyleSheet(
+                                "QLineEdit{border:2px solid white; border-radius: 5px;}")
+                        self.UpperPartOnTaskAvailable.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnUpdateWork.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnUserProfile.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnContactUs.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnFAQs.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnWriterDashboard_2.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnInProgressCourse.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartForRegisterClient_4.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnWriterDashboard.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.label_40.setStyleSheet("color:black;")
+                        self.label_42.setStyleSheet("color:black;")
+                        self.label_10.setStyleSheet("color:black;")
+                        self.label_44.setStyleSheet("color:black;")
+                        self.label_9.setStyleSheet("color:black;")
+                        self.label_43.setStyleSheet("color:black;")
+                        self.widget_32.setStyleSheet("color:black;")
+                        self.ContentOnFAQs.setStyleSheet("color:black; background-color: grey;")
+                        self.widget_31.setStyleSheet("color:black;")
+                        self.dark_mode = True
+                else:
+                        self.RightForm.setStyleSheet("background-color:white;\n"
+                                        "border-radius:15px;")
+                        self.widget_4.setStyleSheet("color:black;")
+                        icon = QtGui.QIcon()
+                        icon.addPixmap(QtGui.QPixmap(":/Icons/Icons/sun.svg"),
+                                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                        self.pushButton_6.setIcon(icon)
+                        self.pushButton_4.setIcon(icon)
+                        self.pushButton_7.setIcon(icon)
+                        self.pushButton_14.setIcon(icon)
+                        self.pushButton_16.setIcon(icon)
+                        self.pushButton_17.setIcon(icon)
+                        self.pushButton_18.setIcon(icon)
+                        self.pushButton_19.setIcon(icon)
+                        self.pushButton_20.setIcon(icon)
+                        self.pushButton_6.setStyleSheet("#pushButton_6 {padding: 0px;} \n #pushButton_6:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_4.setStyleSheet("#pushButton_4 {padding: 0px;} \n #pushButton_4:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_7.setStyleSheet("#pushButton_7 {padding: 0px;} \n #pushButton_7:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_14.setStyleSheet("#pushButton_14 {padding: 0px;} \n #pushButton_14:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_16.setStyleSheet("#pushButton_16 {padding: 0px;} \n #pushButton_16:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_17.setStyleSheet("#pushButton_17 {padding: 0px;} \n #pushButton_17:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_18.setStyleSheet("#pushButton_18 {padding: 0px;} \n #pushButton_18:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_19.setStyleSheet("#pushButton_19 {padding: 0px;} \n #pushButton_19:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_20.setStyleSheet("#pushButton_20 {padding: 0px;} \n #pushButton_20:hover{border-radius:5px; background-color: #2596be;}")
+                        self.ContentOnEvaluatePage.setStyleSheet(
+                                "QLineEdit{border:2px solid black; border-radius: 5px;}")
+                        self.UpperPartOnTaskAvailable.setStyleSheet("background-color: white;")
+                        self.UpperPartOnUpdateWork.setStyleSheet("background-color: white;")
+                        self.UpperPartOnUserProfile.setStyleSheet("background-color: white;")
+                        self.UpperPartOnContactUs.setStyleSheet("background-color: white;")
+                        self.UpperPartOnFAQs.setStyleSheet("background-color: white;")
+                        self.UpperPartOnWriterDashboard_2.setStyleSheet("background-color: white;")
+                        self.UpperPartOnInProgressCourse.setStyleSheet("background-color: white;")
+                        self.UpperPartForRegisterClient_4.setStyleSheet("background-color: white;")
+                        self.UpperPartOnWriterDashboard.setStyleSheet("background-color: white;")
+                        self.ContentOnFAQs.setStyleSheet("color:black; background-color: white;")
+                        self.dark_mode = False
+        def show_WriterDashboard(self):
+                self.RightForm.setCurrentWidget(self.WriterDashboard)
+        def show_TaskAvailable(self):
+                self.RightForm.setCurrentWidget(self.TaskAvailable)
+        def show_UpdateWork(self):
+                self.RightForm.setCurrentWidget(self.UpdateWork)
+        def show_ManageLeaves(self):
+                self.RightForm.setCurrentWidget(self.ManageLeaves)
+        def show_UserProfile(self):
+                self.RightForm.setCurrentWidget(self.UserProfile)
+        def show_InProgressCourse(self):
+                self.RightForm.setCurrentWidget(self.InProgressCourse)
+        def show_EvaluationPage(self):
+                self.RightForm.setCurrentWidget(self.EvaluationPage)
+        def show_ContactUs(self):
+                self.RightForm.setCurrentWidget(self.ContactUs)
+        def show_FAQs(self):
+                self.RightForm.setCurrentWidget(self.FAQs)
+        def open_leftmenu(self):
+                width = self.LeftMenu.width()
+                height = self.LeftMenu.height()
+
+                if width == 0 and height == 0:
+                        newWidth = 550
+                        newHeight = 1000
+                else:
+                        newWidth = 0
+                        newHeight = 0
+
+                self.leftmenuanimatewidth = QPropertyAnimation(self.LeftMenu, b'maximumWidth')
+                self.leftmenuanimatewidth.setDuration(500)
+                self.leftmenuanimatewidth.setStartValue(width)
+                self.leftmenuanimatewidth.setEndValue(newWidth)
+                self.leftmenuanimatewidth.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimatewidth.start()
+
+                self.leftmenuanimateheight = QPropertyAnimation(self.LeftMenu, b'maximumHeight')
+                self.leftmenuanimateheight.setDuration(1000)
+                self.leftmenuanimateheight.setStartValue(height)
+                self.leftmenuanimateheight.setEndValue(newHeight)
+                self.leftmenuanimateheight.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimateheight.start()
+        def OpenAndHideUserMenu(self,object_here):
+                self.object_here = object_here 
+                width = object_here.width()
+                height = object_here.height()
+                if width == 0 and height == 0:
+                        newWidth = 550
+                        newHeight = 1000
+                else:
+                        newWidth = 0
+                        newHeight = 0
+
+                self.usermenuanimatewidht = QPropertyAnimation(object_here, b'maximumWidth')
+                self.usermenuanimatewidht.setDuration(500)
+                self.usermenuanimatewidht.setStartValue(width)
+                self.usermenuanimatewidht.setEndValue(newWidth)
+                self.usermenuanimatewidht.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.usermenuanimatewidht.start()
+
+                self.usermenuanimateheight = QPropertyAnimation(object_here, b'maximumHeight')
+                self.usermenuanimateheight.setDuration(700)
+                self.usermenuanimateheight.setStartValue(height)
+                self.usermenuanimateheight.setEndValue(newHeight)
+                self.usermenuanimateheight.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.usermenuanimateheight.start()
+        def showUserMenuOnWriterDashboard(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnWriterDashboard)
+        def showUserMenuOnTaskAvailable(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnTaskAvailable)
+        def showUserMenuOnUpdateWork(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnUpdateWork)
+        def showUserMenuOnManageLeaves(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnWriterDashboard_3)
+        def showUserMenuOnProfile(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnUserProfile)
+        def showUserMenuOnInProgressCourse(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnInProgressCourse)
+        def showUserMenuOnContactUs(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnContactUs)
+        def showUserMenuOnFAQs(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnFAQs)
+        def closewindow(self):
+                import sys
+                sys.exit()
+        def minimzewindow(self):
+                import win32gui
+                import win32con
+                Minimize = win32gui.GetForegroundWindow()
+                win32gui.ShowWindow(Minimize, win32con.SW_MINIMIZE)
+        def maximizewindow(self):
+                from win32api import GetSystemMetrics
+                if not self.maximized:
+                        self.maximized = True
+                        self.animemaximize = QPropertyAnimation(self.MainWindow, b'geometry')
+                        self.animemaximize.setDuration(1000)
+                        self.animemaximize.setStartValue(QRect(self.MainWindow.x(),self.MainWindow.y(),self.MainWindow.width(),self.MainWindow.height()))
+                        self.animemaximize.setEndValue(QRect(0,0,GetSystemMetrics(0),GetSystemMetrics(1)))
+                        self.animemaximize.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.animemaximize.start()
+                elif self.maximized:
+                        self.maximized = False
+                        self.animeshrink = QPropertyAnimation(self.MainWindow, b'geometry')
+                        self.animeshrink.setDuration(1000)
+                        self.animeshrink.setStartValue(QRect(self.MainWindow.x(),self.MainWindow.y(),self.MainWindow.width(),self.MainWindow.height()))
+                        self.animeshrink.setEndValue(QRect(int(GetSystemMetrics(0)/5),int(GetSystemMetrics(1)/7),int(GetSystemMetrics(0)/1.5),int(GetSystemMetrics(1)/1.5)))
+                        self.animeshrink.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.animeshrink.start()
+        def open_notification_Board(self):
+                width = self.widget_8.width()
+                height = self.widget_8.height()
+
+                if width == 0 and height == 0:
+                        newWidth = 550
+                        newHeight = 1000
+                else:
+                        newWidth = 0
+                        newHeight = 0
+
+                self.leftmenuanimatewidth = QPropertyAnimation(self.widget_8, b'maximumWidth')
+                self.leftmenuanimatewidth.setDuration(500)
+                self.leftmenuanimatewidth.setStartValue(width)
+                self.leftmenuanimatewidth.setEndValue(newWidth)
+                self.leftmenuanimatewidth.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimatewidth.start()
+
+                self.leftmenuanimateheight = QPropertyAnimation(self.widget_8, b'maximumHeight')
+                self.leftmenuanimateheight.setDuration(1000)
+                self.leftmenuanimateheight.setStartValue(height)
+                self.leftmenuanimateheight.setEndValue(newHeight)
+                self.leftmenuanimateheight.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimateheight.start()
+        def loaddata(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from task where writer_ID_fk = %s ",str(self.writer_id))
+                record = cur.fetchall()
+                task_id = []
+                task_WordCount = []
+                task_Deadline = []
+                task_Date = []
+                task_Status = []
+                task_Topic = []
+                task_Recieved_WordCount = []
+                task_StartTime = []
+                task_EndTime = []
+                task_Palagrism = []
+                task_Assignedto = []
+                row = 0
+                while row < len(record):
+                        task_id.append(record[row][0])
+                        self.comboBox_3.addItem(str(record[row][0]))
+                        task_WordCount.append(record[row][1])
+                        task_Deadline.append(record[row][2])
+                        task_Date.append(record[row][3])
+                        task_Status.append(record[row][4])
+                        task_Topic.append(record[row][5])
+                        task_Recieved_WordCount.append(record[row][6])
+                        task_StartTime.append(record[row][7])
+                        task_EndTime.append(record[row][8])
+                        task_Palagrism.append(record[row][9])
+                        task_Assignedto.append(record[row][10])
+                        if str(self.writer_id) == str(task_Assignedto[row]):
+                                self.ContentOnTaskAvailable.setRowCount(10)
+                                self.ContentOnTaskAvailable.setItem(row, 0, QtWidgets.QTableWidgetItem(str(task_id[row])))
+                                self.ContentOnTaskAvailable.setItem(row, 1, QtWidgets.QTableWidgetItem(str(task_WordCount[row])))
+                                self.ContentOnTaskAvailable.setItem(row, 2, QtWidgets.QTableWidgetItem(task_Deadline[row]))
+                                self.ContentOnTaskAvailable.setItem(row, 3, QtWidgets.QTableWidgetItem(task_Date[row]))
+                                self.ContentOnTaskAvailable.setItem(row, 4, QtWidgets.QTableWidgetItem(task_Status[row]))
+                        row += 1            
+        def On_click_Download_Report_on_Dashboard(self):
+                self.MessageOnDashboard.setText("Your file has been downloaded.")
+                self.showmessageandhidemessage(self.MessageOnDashboard)
+        def On_click_Upload_File_on_Update_Page(self):
+                directory, _ = QtWidgets.QFileDialog.getOpenFileName()
+                with open(directory, "rb") as File:
+                        self.BinaryData_from_update = File.read()
+                        self.MessageOnUpdateWork.setText("File is loaded from: "+directory)
+                        self.showmessageandhidemessage(self.MessageOnUpdateWork)                
+        def On_click_Submit_button_on_Update_Page(self):                
+                self.MessageOnUpdateWork.setText("Your file has been submitted.")
+                self.showmessageandhidemessage(self.MessageOnUpdateWork)
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("update task set task_uploaded_file = %s where task_ID = %s ",(self.BinaryData_from_update, self.comboBox_3.currentText()))
+                cur.execute("update task set task_Recieved_WordCount = %s, task_Status = %s, task_StartTime = %s, task_EndTime = %s where task_ID = %s ",(self.lineEdit_2.text(),"Forwarded", self.timeEdit_2.text(), self.timeEdit.text(), self.comboBox_3.currentText()))
+                con.commit()
+                con.close()
+        def On_click_change_picture_on_profile(self):
+                try:
+                        directory, _ = QtWidgets.QFileDialog.getOpenFileName()
+                        with open(directory, "rb") as File:
+                                self.BinaryData_from_picture = File.read()
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("update writer set writer_Image = %s where writer_Email = %s ",(self.BinaryData_from_picture, self.Writer_Email))
+                        cur.execute("select writer_Image from writer where writer_Email = %s ",(self.Writer_Email))
+                        record = cur.fetchall()
+                        con.commit()
+                        con.close()
+                        self.MessagOnProfile.setText("Picture Updated")
+                        self.showmessageandhidemessage(self.MessagOnProfile)
+                except:
+                        self.MessagOnProfile.setText("There was an error uploading picture. Please upload maximum of 5 MB file.")
+                        self.showmessageandhidemessage(self.MessagOnProfile)
+        def On_click_submit_on_Manage_Leaves(self):
+                self.MessageOnManageLeaves.setText("Your leaves and deduction types are updated.")
+                self.showmessageandhidemessage(self.MessageOnManageLeaves)
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("insert into leaves (writer_ID_fk, leaves_Amount, leaves_DeductionType, leaves_Reason, leaves_document, leaves_date, leaves_status) values (%s,%s,%s,%s,%s,%s,%s)",(
+                        self.writer_id,
+                        str(int(self.spinBox_2.text())),
+                        self.comboBox_10.currentText(),
+                        self.textEdit.toPlainText(),
+                        str(self.BinaryData_from_manage_leaves),
+                        self.dateEdit.text(),
+                        "Pending",
+                        ))
+                con.commit()
+                con.close()
+                self.add_data_in_manage_leave_table()
+        def on_click_upload_picture(self):
+                directory, _ = QtWidgets.QFileDialog.getOpenFileName()
+                if directory != '':
+                        with open(directory, "rb") as File:
+                                self.BinaryData_from_manage_leaves = File.read()
+                                self.MessageOnManageLeaves.setText("File is loaded from: "+directory)
+                                self.showmessageandhidemessage(self.MessageOnManageLeaves)
+        def add_data_in_manage_leave_table(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from leaves where writer_ID_fk = %s ",str(self.writer_id))
+                record = cur.fetchall()
+                writer_ID_fk = []
+                leaves_Amount = []
+                leaves_Reason = []
+                leaves_Date = []
+                leaves_DeductionType = []
+                leaves_status = []
+                row = 0
+                while row < len(record):
+                        writer_ID_fk.append(record[row][1])
+                        leaves_Amount.append(record[row][2])
+                        leaves_Reason.append(record[row][4])
+                        leaves_Date.append(record[row][6])
+                        leaves_DeductionType.append(record[row][3])
+                        leaves_status.append(record[row][7])
+                        if str(self.writer_id) == str(writer_ID_fk[row]):
+                                self.tableWidget_2.setRowCount(len(record))
+                                self.tableWidget_2.setItem(row, 0, QtWidgets.QTableWidgetItem(str(leaves_Amount[row])))
+                                self.tableWidget_2.setItem(row, 1, QtWidgets.QTableWidgetItem(str(leaves_Reason[row])))
+                                self.tableWidget_2.setItem(row, 2, QtWidgets.QTableWidgetItem(leaves_DeductionType[row]))
+                                self.tableWidget_2.setItem(row, 3, QtWidgets.QTableWidgetItem(leaves_Date[row]))
+                                self.tableWidget_2.setItem(row, 4, QtWidgets.QTableWidgetItem(leaves_status[row]))
+                        row += 1 
+        def showmessageandhidemessage(self, objecthere):
+                self.objecthere = objecthere
+                self.animatemessageview_width = QPropertyAnimation(self.objecthere, b'maximumWidth')
+                self.animatemessageview_width.setDuration(1000)
+                self.animatemessageview_width.setStartValue(0)
+                self.animatemessageview_width.setEndValue(1000)
+                self.animatemessageview_width.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.animatemessageview__height = QPropertyAnimation(self.objecthere, b'maximumHeight')
+                self.animatemessageview__height.setDuration(1000)
+                self.animatemessageview__height.setStartValue(0)
+                self.animatemessageview__height.setEndValue(100)
+                self.animatemessageview__height.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.delay = QPropertyAnimation(self.objecthere, b'maximumWidth')
+                self.delay.setDuration(1000)
+                self.delay.setStartValue(1000)
+                self.delay.setEndValue(1000)
+                self.delay.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.hidemessageanime_width = QPropertyAnimation(self.objecthere, b'maximumWidth')
+                self.hidemessageanime_width.setDuration(1000)
+                self.hidemessageanime_width.setStartValue(1000)
+                self.hidemessageanime_width.setEndValue(0)
+                self.hidemessageanime_width.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.hidemessageanime_height = QPropertyAnimation(self.objecthere, b'maximumHeight')
+                self.hidemessageanime_height.setDuration(1000)
+                self.hidemessageanime_height.setStartValue(100)
+                self.hidemessageanime_height.setEndValue(0)
+                self.hidemessageanime_height.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.Sequenceformessage = QSequentialAnimationGroup()
+                self.Sequenceformessage.addAnimation(self.animatemessageview_width)
+                self.Sequenceformessage.addAnimation(self.animatemessageview__height)
+                self.Sequenceformessage.addAnimation(self.delay)
+                self.Sequenceformessage.addAnimation(self.hidemessageanime_height)
+                self.Sequenceformessage.addAnimation(self.hidemessageanime_width)
+                self.Sequenceformessage.start()
+        
+        def add_Team_Leader_in_Evaluation_Form(self, Leader):
+                self.Leader = Leader
+                self.comboBox.addItem(Leader)        
+                        
+                # Opening Pages
+                self.WriterDashboardBtn.clicked.connect(self.show_WriterDashboard)
+                self.TaskApprovedBtn.clicked.connect(self.show_TaskAvailable)
+                self.WordCountReport.clicked.connect(self.show_UpdateWork)
+                self.ManageLeavesBtn.clicked.connect(self.show_ManageLeaves)
+                self.ProfileBtn.clicked.connect(self.show_UserProfile)
+                self.InProgressBtn.clicked.connect(self.show_InProgressCourse)
+                self.EvaluationBtn.clicked.connect(self.show_EvaluationPage)
+                self.ContactUsBtn.clicked.connect(self.show_ContactUs)
+                self.FAQsBtn.clicked.connect(self.show_FAQs)
+        
+                # Opening Menu Function
+                self.MenuButtonOnWriterDashboard.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnTaskAvailable.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnUpdateWork.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnUserProfile.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnInProgressCourse.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnContactUs.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnFAQs.clicked.connect(self.open_leftmenu)
+
+                #For Opening User Logout Menu
+                self.UserIconOnWriterDashboard.clicked.connect(self.showUserMenuOnWriterDashboard)
+                self.UserIconOnTaskAvailable.clicked.connect(self.showUserMenuOnTaskAvailable)
+                self.UserIconOnUpdateWork.clicked.connect(self.showUserMenuOnUpdateWork)
+                self.UserIconOnRegisterClient_6.clicked.connect(self.showUserMenuOnManageLeaves)
+                self.UserIconOnUserProfile.clicked.connect(self.showUserMenuOnProfile)
+                self.UserIconOnInProgressCourse.clicked.connect(self.showUserMenuOnInProgressCourse)
+                self.UserIconOnContactUs.clicked.connect(self.showUserMenuOnContactUs)
+                self.UserIconOnFAQs.clicked.connect(self.showUserMenuOnFAQs)
+
+                # Upper Menu Button Connection
+                self.UpperButtonClose.clicked.connect(self.closewindow)
+                self.UpperButtonMaximize.clicked.connect(self.maximizewindow)
+                self.UpperButtonMinimize.clicked.connect(self.minimzewindow)
+
+                # Notification Board Show And Hiding 
+                self.NotificationIconOnWriterDashboard.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnTaskAvailable.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnUpdateWork.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnRegisterClient_6.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnUserProfile.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnInProgressCourse.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnContactUs.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnFAQs.clicked.connect(self.open_notification_Board)
+
+                self.pushButton_6.clicked.connect(self.dark_mode_on)
+                self.pushButton_4.clicked.connect(self.dark_mode_on)
+                self.pushButton_7.clicked.connect(self.dark_mode_on)
+                self.pushButton_14.clicked.connect(self.dark_mode_on)
+                self.pushButton_16.clicked.connect(self.dark_mode_on)
+                self.pushButton_17.clicked.connect(self.dark_mode_on)
+                self.pushButton_18.clicked.connect(self.dark_mode_on)
+                self.pushButton_19.clicked.connect(self.dark_mode_on)
+                self.pushButton_20.clicked.connect(self.dark_mode_on)
+
+                # Extra Functions on Buttons
+                self.BinaryData_from_manage_leaves = ""
+                self.BinaryData = ""
+                self.pushButton_12.clicked.connect(self.On_click_Download_Report_on_Dashboard)
+                self.pushButton_11.clicked.connect(self.On_click_Upload_File_on_Update_Page)
+                self.pushButton_10.clicked.connect(self.On_click_Submit_button_on_Update_Page)
+                self.pushButton_3.clicked.connect(self.On_click_change_picture_on_profile)
+                self.pushButton_5.clicked.connect(self.On_click_submit_on_Manage_Leaves)
+                self.pushButton_21.clicked.connect(self.on_click_upload_picture)
+                
+                self.ContentOnTaskAvailable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+                self.tableWidget.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+                self.tableWidget_2.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+        
+                
+if __name__ == "__main__":
+    import sys
+    from Reg import DB_Data
+    app = QtWidgets.QApplication(sys.argv)
+    GetData = DB_Data("umer.fiesta2762", "1")
+    GetData.getdatafrom()
+    ui = WriterMain(str(GetData.writer_id), False,str(GetData.writer_evaluation_points),str(GetData.writer_fullname),str(GetData.writer_daily_word_count),str(GetData.writer_monthly_word_count),r"./Images/writer_image.png",str(GetData.writer_email),str(GetData.writer_phone),str(GetData.writer_gender),"20",str(GetData.writer_description), str(GetData.writer_jobe_role), str(GetData.writer_team_name))
+    ui.setupUi()
+    ui.MainWindow.show()
+    ui.add_data_in_manage_leave_table()
+    ui.add_Team_Leader_in_Evaluation_Form(str(GetData.writer_team_leader))
+    ui.loaddata()
+    sys.exit(app.exec_())
+
+In retranslate:
+                self.label_137.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_12.setText(_translate("self.MainWindow", self.Evaluation_points))
+                self.label_9.setText(_translate(
+                "self.MainWindow", self.Writer_Monthly_WordCount))
+                self.label_8.setText(_translate(
+                "self.MainWindow", self.Writer_Daily_WordCount))
+                self.label_10.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_138.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_139.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_142.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_151.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_143.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_26.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_27.setText(_translate("self.MainWindow", self.Writer_Email))
+                self.label_28.setText(_translate("self.MainWindow", self.Writer_Contact_No))
+                self.label_31.setText(_translate("self.MainWindow", self.Writer_Biography))
+                self.label_30.setText(_translate("self.MainWindow", self.Writer_Age))
+                self.label_3.setText(_translate("self.MainWindow", self.Writer_Role))
+                self.label_144.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_148.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_149.setText(_translate("self.MainWindow", self.Writer_Name))
+
+In setupUI:
+        self.label_38.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+        self.label_39.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))

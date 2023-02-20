@@ -1,0 +1,4 @@
+To convert Resources
+pyrcc5 -o Resources.py IconsResources.qrc
+TO convert UI
+pyuic5 -x Dashboard.ui -o Dashboard2.py

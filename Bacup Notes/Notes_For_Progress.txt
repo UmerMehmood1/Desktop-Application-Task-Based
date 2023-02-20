@@ -1,0 +1,20 @@
+For Writer Application:
+    Introduction Page
+    Notification Board ==>
+        Change Order to New Task => Announcement => Team of the Month => Employee of the Month
+        Birthday Notification => Updated Monthly
+    Create Welcoming Short Page Every time initializing 
+    Generate Card
+    
+
+For Team Leader Application:
+    SVG files within members
+    Update Designation and store time and ID 
+
+Registeration Page:
+    Login button missing on registeration form
+    Log In to register button missing on Log in form
+    Terms and condition missing {Contract missing}    
+    
+Extra Ideas:
+    Send wishes on Birthday

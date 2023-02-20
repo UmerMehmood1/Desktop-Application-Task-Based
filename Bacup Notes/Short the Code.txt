@@ -1,0 +1,13 @@
+Short the code to Object:
+    Done ---> Reg.py
+    Done ---> Data_Extractor.py
+    Done ---> Login.py
+    Done ---> TDLMain.py
+    Done ---> WriterMain.py
+
+Again Recheck Names for the class creation and remove extra lines:
+    Done ---> Reg.py
+    Done ---> Data_Extractor.py
+    Done ---> Login.py
+    Done ---> TDLMain.py
+    Done ---> WriterMain.py

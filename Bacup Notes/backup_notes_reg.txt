@@ -1,0 +1,326 @@
+        def Onclickregister(self):
+                # self.Register_to_DB()
+                # Closing Content for Registeration by width
+                self.step1 = QPropertyAnimation(
+                self.ContentOnRegisterationPage, b'maximumWidth')
+                self.step1.setDuration(1000)
+                self.step1.setStartValue(self.ContentOnRegisterationPage.width())
+                self.step1.setEndValue(0)
+                self.step1.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                # Closing Content for Registeration by height
+                self.step2 = QPropertyAnimation(
+                self.ContentOnRegisterationPage, b'maximumHeight')
+                self.step2.setDuration(1000)
+                self.step2.setStartValue(self.ContentOnRegisterationPage.height())
+                self.step2.setEndValue(0)
+                self.step2.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                # Resizing Main Window
+                self.step3 = QPropertyAnimation(MainWindow, b'maximumHeight')
+                self.step3.setDuration(1000)
+                self.step3.setStartValue(MainWindow.height())
+                self.step3.setEndValue(500)
+                self.step3.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                # Geometry Setting
+                self.step3 = QPropertyAnimation(MainWindow, b'geometry')
+                self.step3.setDuration(1000)
+                self.step3.setStartValue(
+                QRect(MainWindow.x(), MainWindow.y(), MainWindow.width(), MainWindow.height()))
+                self.step3.setEndValue(QRect(540, 300, 773, 300))
+                self.step3.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.changewelcometext()
+
+                self.step4 = QPropertyAnimation(self.Validating, b'maximumWidth')
+                self.step4.setDuration(1000)
+                self.step4.setStartValue(800)
+                self.step4.setEndValue(900)
+                self.step4.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step5 = QPropertyAnimation(self.Validating, b'maximumWidth')
+                self.step5.setDuration(1000)
+                self.step5.setStartValue(0)
+                self.step5.setEndValue(900)
+                self.step5.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step6 = QPropertyAnimation(self.Validating, b'maximumHeight')
+                self.step6.setDuration(1000)
+                self.step6.setStartValue(0)
+                self.step6.setEndValue(900)
+                self.step6.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step7 = QPropertyAnimation(self.Validating, b'maximumWidth')
+                self.step7.setDuration(1000)
+                self.step7.setStartValue(900)
+                self.step7.setEndValue(0)
+                self.step7.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step8 = QPropertyAnimation(self.Validating, b'maximumHeight')
+                self.step8.setDuration(1000)
+                self.step8.setStartValue(300)
+                self.step8.setEndValue(0)
+                self.step8.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step9 = QPropertyAnimation(MainWindow, b'maximumHeight')
+                self.step9.setDuration(1000)
+                self.step9.setStartValue(MainWindow.height())
+                self.step9.setEndValue(300)
+                self.step9.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step10 = QPropertyAnimation(self.LoginWidget, b'maximumHeight')
+                self.step10.setDuration(1000)
+                self.step10.setStartValue(self.LoginWidget.height())
+                self.step10.setEndValue(500)
+                self.step10.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.step11 = QPropertyAnimation(self.LoginWidget, b'maximumWidth')
+                self.step11.setDuration(1000)
+                self.step11.setStartValue(self.LoginWidget.width())
+                self.step11.setEndValue(900)
+                self.step11.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.SequenceAnime = QSequentialAnimationGroup()
+                self.SequenceAnime.addAnimation(self.step1)
+                self.SequenceAnime.addAnimation(self.step2)
+                self.SequenceAnime.addAnimation(self.step3)
+                self.SequenceAnime.addAnimation(self.step4)
+                self.SequenceAnime.addAnimation(self.step5)
+                self.SequenceAnime.addAnimation(self.step6)
+                self.SequenceAnime.addAnimation(self.step7)
+                self.SequenceAnime.addAnimation(self.step8)
+                self.SequenceAnime.addAnimation(self.step9)
+                self.SequenceAnime.addAnimation(self.step10)
+                self.SequenceAnime.addAnimation(self.step11)
+                self.SequenceAnime.start()
+
+        def exitwindow(self):
+                sys.exit()
+
+        def minimizewindow(self):
+                import win32gui
+                import win32con
+                Minimize = win32gui.GetForegroundWindow()
+                win32gui.ShowWindow(Minimize, win32con.SW_MINIMIZE)
+
+        def changewelcometext(self):
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registeration For")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registeration Fo")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registeration F")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registeration ")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registeration")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registeratio")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registerati")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registerat")
+                self.WelcomeText.setText(
+                "Welcome to Fiesta Content Solution Registera")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Register")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Registe")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Regist")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Regis")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Regi")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Reg")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution Re")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution R")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution ")
+                self.WelcomeText.setText("Welcome to Fiesta Content Solution")
+
+        def Register_to_DB(self):
+                if (self.radioButtonforMale.isChecked()):
+                        gender = "Male"
+                elif (self.radioButtonFemale.isChecked()):
+                        gender = "Female"
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("INSERT INTO writer (writer_FName, writer_LName, writer_CompanyName, writer_Email, writer_password, writer_Phone, writer_Description, writer_Gender, writer_Image, writer_Leader, writer_category) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (
+                str(self.FirstNameInput.text()),
+                str(self.LastNameInput.text()),
+                "Fiesta Content Solutions",
+                str(self.EmailInput.text()),
+                str(self.PasswordInput.text()),
+                str(self.CountryCodeInput.text()+self.ActualNumberInput.text()),
+                str(self.ConfirmPasswordInput_2.text()),
+                str(gender),
+                self.BinaryData,
+                str(self.comboBox_2.currentText()),
+                str(self.comboBox.currentText()),
+                ))
+                con.commit()
+                con.close()
+                
+        def showmessage_Login(self):
+                self.animatemessageview_width = QPropertyAnimation(self.widget, b'maximumWidth')
+                self.animatemessageview_width.setDuration(1000)
+                self.animatemessageview_width.setStartValue(0)
+                self.animatemessageview_width.setEndValue(1000)
+                self.animatemessageview_width.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.animatemessageview__height = QPropertyAnimation(self.widget, b'maximumHeight')
+                self.animatemessageview__height.setDuration(1000)
+                self.animatemessageview__height.setStartValue(0)
+                self.animatemessageview__height.setEndValue(100)
+                self.animatemessageview__height.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.Sequenceformessage = QSequentialAnimationGroup()
+                self.Sequenceformessage.addAnimation(self.animatemessageview_width)
+                self.Sequenceformessage.addAnimation(self.animatemessageview__height)
+                self.Sequenceformessage.start()
+        
+        def hidemessage_Login(self):
+                self.hidemessageanime_width = QPropertyAnimation(self.widget, b'maximumWidth')
+                self.hidemessageanime_width.setDuration(1000)
+                self.hidemessageanime_width.setStartValue(1000)
+                self.hidemessageanime_width.setEndValue(0)
+                self.hidemessageanime_width.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.hidemessageanime_height = QPropertyAnimation(self.widget, b'maximumHeight')
+                self.hidemessageanime_height.setDuration(1000)
+                self.hidemessageanime_height.setStartValue(100)
+                self.hidemessageanime_height.setEndValue(0)
+                self.hidemessageanime_height.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.sequencetohidemessage  = QSequentialAnimationGroup()
+                self.sequencetohidemessage.addAnimation(self.hidemessageanime_width)
+                self.sequencetohidemessage.addAnimation(self.hidemessageanime_height)
+                self.sequencetohidemessage.start()
+        
+        def CloseLogin(self):
+                self.CloseLogin1 = QPropertyAnimation(self.widget_2, b'maximumHeight')
+                self.CloseLogin1.setDuration(1000)
+                self.CloseLogin1.setStartValue(self.widget_2.width())
+                self.CloseLogin1.setEndValue(0)
+                self.CloseLogin1.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                
+                self.CloseLogin2 = QPropertyAnimation(self.WelcomeContainer, b'maximumHeight')
+                self.CloseLogin2.setDuration(1000)
+                self.CloseLogin2.setStartValue(self.WelcomeContainer.width())
+                self.CloseLogin2.setEndValue(0)
+                self.CloseLogin2.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                
+                self.CloseLogin3 = QPropertyAnimation(MainWindow, b'maximumHeight')
+                self.CloseLogin3.setDuration(1000)
+                self.CloseLogin3.setStartValue(MainWindow.width())
+                self.CloseLogin3.setEndValue(0)
+                self.CloseLogin3.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.SequenceforCloseLogin = QSequentialAnimationGroup()
+                self.SequenceforCloseLogin.addAnimation(self.CloseLogin1)
+                self.SequenceforCloseLogin.addAnimation(self.CloseLogin2)
+                self.SequenceforCloseLogin.addAnimation(self.CloseLogin3)
+                self.SequenceforCloseLogin.start()
+                self.SequenceforCloseLogin.finished.connect(self.MWClose)
+
+        def MWClose(self):
+                MainWindow.close()
+        
+        def OnclickLogin(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_Email = %s and writer_password = %s",(
+                self.lineEdit.text(),
+                self.lineEdit_2.text()
+                ))
+                record = cur.fetchone()
+                print(record)
+                if self.lineEdit.text() == "" or self.lineEdit_2.text() == "":
+                        self.MessageOnLogin.setText("Fields are empty. Please give some input to work on.")
+                        self.MessageOnLogin.setStyleSheet("color: darkred;")
+                        self.widget.setStyleSheet("background-color:#FF7F7F;")
+                        self.showmessage_Login()
+                elif record != None:
+                        self.MessageOnLogin.setText("Login Succesful")
+                        self.MessageOnLogin.setStyleSheet("color: darkgreen;")
+                        self.widget.setStyleSheet("background-color: lightgreen;")
+                        self.showmessage_Login()
+                        self.CloseLogin()
+                        self.window = QtWidgets.QMainWindow()
+                        GetData = DB_Data(str(self.lineEdit.text()), str(self.lineEdit_2.text()))
+                        GetData.getdatafrom()
+                        self.ui = WriterMain(False,str(GetData.writer_evaluation_points),str(GetData.writer_fullname),str(GetData.writer_daily_word_count),str(GetData.writer_monthly_word_count),r"./Images/writer_image.png",str(GetData.writer_email),str(GetData.writer_phone),str(GetData.writer_gender),"20",str(GetData.writer_description), str(GetData.writer_jobe_role))
+                        self.ui.setupUi()
+                        self.ui.MainWindow.show()
+                else:
+                        self.MessageOnLogin.setText("Invalid Credential")
+                        self.MessageOnLogin.setStyleSheet("color: darkred;")
+                        self.widget.setStyleSheet("background-color:#FF7F7F;")
+                        self.showmessage_Login()
+                con.commit()
+                con.close()
+
+        def openImage(self):
+                self.imagePath, _ = QtWidgets.QFileDialog.getOpenFileName()
+                pixmap = QtGui.QPixmap(self.imagePath)
+                self.label_2.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(pixmap),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+                self.label_2.resize(pixmap.size())
+                with open(self.imagePath, "rb") as File:
+                        self.BinaryData = File.read()
+                if self.imagePath == "":
+                        print("Error")
+
+class DB_Data:
+        def __init__(self, email, password):
+                self.email = email
+                self.password = password
+                
+        writer_fullname = ""
+        writer_evaluation_points = 1
+        writer_daily_word_count = 1
+        writer_monthly_word_count = 1
+        writer_total_leaves = 1
+        writer_leaves_deduction_type = ""
+        writer_email = ""
+        writer_phone = ""
+        writer_gender = ""
+        writer_description = ""
+        writer_jobe_role = ""
+        writer_image = ""
+        writer_team_leader = ""
+        writer_password = ""
+
+        def getdatafrom(self):
+                import pymysql as sql
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_Email = %s and writer_Password = %s",(self.email,self.password))
+                record = cur.fetchone()
+                self.writer_fullname = record[1]+" "+record[2]
+                self.writer_evaluation_points = record[3]
+                self.writer_daily_word_count = record[4]
+                self.writer_monthly_word_count = record[5]
+                self.writer_total_leaves = record[6]
+                self.writer_leaves_deduction_type = record[7]
+                self.writer_email = record[8]
+                self.writer_phone = record[9]
+                self.writer_gender = record[10]
+                self.writer_description = record[11]
+                self.writer_jobe_role = record[12]
+                self.writer_image = record[13]
+                self.writer_team_leader = record[14]
+                self.writer_password = record[15]
+                self.write_file(r"./Images/writer_image.png",self.writer_image)
+                con.commit()
+                con.close()
+        
+        def write_file(self, directory, image):
+        # Convert binary data to proper format and write it on Hard Disk
+                self.directory = directory
+                self.image = image
+                with open(directory, 'wb') as file:
+                        file.write(image)
+
+
+                self.ButtonToRegister.clicked.connect(self.Onclickregister)
+                self.UpperPanelCloseButton.clicked.connect(self.exitwindow)
+                self.UpperPanelMinimizeButton.clicked.connect(self.minimizewindow)
+                self.pushButton.clicked.connect(self.OnclickLogin)
+                self.ButtontoCloseMessageOnLogin.clicked.connect(self.hidemessage)
+                self.pushButton_2.clicked.connect(self.openImage)

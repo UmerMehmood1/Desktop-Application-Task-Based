@@ -1,0 +1,1557 @@
+import Resources
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt, QRect, QPropertyAnimation, QSequentialAnimationGroup
+import pymysql as sql
+import qdarkstyle
+
+def __init__(self,maximized,
+        Team_Name,
+        New_Members,
+        Total_Assignments,
+        Evaluation_points,
+        Writer_Name,
+        Writer_Image,
+        Writer_Email,
+        Writer_Contact_No,
+        Writer_Gender,
+        Writer_Age,
+        Writer_Biography,
+        Writer_Role,
+        Writer_Team):
+                self.Writer_Team = Writer_Team
+                self.MainWindow = QtWidgets.QMainWindow()
+                self.dark_mode = False
+                from win32api import GetSystemMetrics
+                self.MainWindow.resize(int(GetSystemMetrics(0)/1.5),int(GetSystemMetrics(1)/1.5))
+                self.MainWindow.setAttribute(Qt.WA_TranslucentBackground)
+                self.MainWindow.setWindowFlag(Qt.FramelessWindowHint)
+                self.maximized = maximized
+                self.New_Members = New_Members
+                self.Total_Assignments = Total_Assignments
+                self.Team_Name = Team_Name
+                self.Evaluation_points = Evaluation_points
+                self.Writer_Name = Writer_Name
+                self.Writer_Image = Writer_Image
+                self.Writer_Email = Writer_Email
+                self.Writer_Contact_No = Writer_Contact_No
+                self.Writer_Gender = Writer_Gender
+                self.Writer_Age = Writer_Age
+                self.Writer_Biography = Writer_Biography
+                self.Writer_Role = Writer_Role
+        def show_Dashboard(self):
+                self.RightForm.setCurrentWidget(self.DashboardAdmin)
+        def show_RecievedTask(self):
+                self.RightForm.setCurrentWidget(self.RecievedTaskPage)
+        def show_MangeTeamLeaves(self):
+                self.RightForm.setCurrentWidget(self.ManageTeamLeavesPage)
+        def show_TeamReport(self):
+                self.RightForm.setCurrentWidget(self.WriterProgressPage)
+        def show_PermanencyReport(self):
+                self.RightForm.setCurrentWidget(self.PermanencyReport)                
+        def show_TaskAvailable(self):
+                self.RightForm.setCurrentWidget(self.TaskAvailable)                
+        def show_TaskAssinged(self):
+                self.RightForm.setCurrentWidget(self.TaskAssignedReport)                
+        def show_AssignTask(self):
+                self.RightForm.setCurrentWidget(self.AsiggningTask)                
+        def show_TDLProductivity(self):
+                self.RightForm.setCurrentWidget(self.TDLProductivity)                
+        def show_EvaluationForm(self):
+                self.RightForm.setCurrentWidget(self.EvaluationPage)                
+        def show_UpdateWork(self):
+                self.RightForm.setCurrentWidget(self.UpdateWork)
+        def show_ManageLeaves(self):
+                self.RightForm.setCurrentWidget(self.ManageLeaves)
+        def show_UserProfile(self):
+                self.RightForm.setCurrentWidget(self.UserProfile)
+        def show_ContactUs(self):
+                self.RightForm.setCurrentWidget(self.ContactUs)
+        def show_FAQs(self):
+                self.RightForm.setCurrentWidget(self.FAQs)
+        def show_Update_Designation(self):
+                self.RightForm.setCurrentWidget(self.page)
+        def open_leftmenu(self):
+                width = self.LeftMenu.width()
+                height = self.LeftMenu.height()
+
+                if width == 0 and height == 0:
+                        newWidth = 550
+                        newHeight = 1000
+                else:
+                        newWidth = 0
+                        newHeight = 0
+
+                self.leftmenuanimatewidth = QPropertyAnimation(self.LeftMenu, b'maximumWidth')
+                self.leftmenuanimatewidth.setDuration(500)
+                self.leftmenuanimatewidth.setStartValue(width)
+                self.leftmenuanimatewidth.setEndValue(newWidth)
+                self.leftmenuanimatewidth.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimatewidth.start()
+
+                self.leftmenuanimateheight = QPropertyAnimation(self.LeftMenu, b'maximumHeight')
+                self.leftmenuanimateheight.setDuration(1000)
+                self.leftmenuanimateheight.setStartValue(height)
+                self.leftmenuanimateheight.setEndValue(newHeight)
+                self.leftmenuanimateheight.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimateheight.start()
+        def OpenAndHideUserMenu(self,object_here):
+                self.object_here = object_here 
+                width = object_here.width()
+                height = object_here.height()
+                if width == 0 and height == 0:
+                        newWidth = 550
+                        newHeight = 1000
+                else:
+                        newWidth = 0
+                        newHeight = 0
+
+                self.usermenuanimatewidht = QPropertyAnimation(object_here, b'maximumWidth')
+                self.usermenuanimatewidht.setDuration(500)
+                self.usermenuanimatewidht.setStartValue(width)
+                self.usermenuanimatewidht.setEndValue(newWidth)
+                self.usermenuanimatewidht.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.usermenuanimatewidht.start()
+
+                self.usermenuanimateheight = QPropertyAnimation(object_here, b'maximumHeight')
+                self.usermenuanimateheight.setDuration(700)
+                self.usermenuanimateheight.setStartValue(height)
+                self.usermenuanimateheight.setEndValue(newHeight)
+                self.usermenuanimateheight.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.usermenuanimateheight.start()
+        def showUserMenuOnEvaluation(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnDashboard_4)
+        def showUserMenuOnTDL(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnTDLProductivity)
+        def showUserMenuOnManageLeaves(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnDashboard_3)
+        def showUserMenuOnAssingingTask(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnAsiggningTask)
+        def showUserMenuOnAssingedTask(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnTaskAssignedReport)
+        def showUserMenuOnPermanency(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnPermanencyReport)
+        def showUserMenuOnTeamReport(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnDashboard_2)
+        def showUserMenuOnDashboard(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnDashboard)
+        def showUserMenuOnTaskAvailable(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnTaskAvailable)
+        def showUserMenuOnUpdateWork(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnUpdateWork)
+        def showUserMenuOnProfile(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnUserProfile)
+        def showUserMenuOnContactUs(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnContactUs)
+        def showUserMenuOnFAQs(self): 
+                self.OpenAndHideUserMenu(self.UserMenuOnFAQs)
+        def closewindow(self):
+                import sys
+                sys.exit()
+        def minimzewindow(self):
+                import win32gui
+                import win32con
+                Minimize = win32gui.GetForegroundWindow()
+                win32gui.ShowWindow(Minimize, win32con.SW_MINIMIZE)
+        def maximizewindow(self):
+                from win32api import GetSystemMetrics
+                if not self.maximized:
+                        self.maximized = True
+                        self.animemaximize = QPropertyAnimation(self.MainWindow, b'geometry')
+                        self.animemaximize.setDuration(1000)
+                        self.animemaximize.setStartValue(QRect(self.MainWindow.x(),self.MainWindow.y(),self.MainWindow.width(),self.MainWindow.height()))
+                        self.animemaximize.setEndValue(QRect(0,0,GetSystemMetrics(0),GetSystemMetrics(1)))
+                        self.animemaximize.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.animemaximize.start()
+                elif self.maximized:
+                        self.maximized = False
+                        self.animeshrink = QPropertyAnimation(self.MainWindow, b'geometry')
+                        self.animeshrink.setDuration(1000)
+                        self.animeshrink.setStartValue(QRect(self.MainWindow.x(),self.MainWindow.y(),self.MainWindow.width(),self.MainWindow.height()))
+                        self.animeshrink.setEndValue(QRect(int(GetSystemMetrics(0)/5),int(GetSystemMetrics(1)/7),int(GetSystemMetrics(0)/1.5),int(GetSystemMetrics(1)/1.5)))
+                        self.animeshrink.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.animeshrink.start()
+        def open_notification_Board(self):
+                width = self.widget_9.width()
+                height = self.widget_9.height()
+
+                if width == 0 and height == 0:
+                        newWidth = 550
+                        newHeight = 1000
+                else:
+                        newWidth = 0
+                        newHeight = 0
+
+                self.leftmenuanimatewidth = QPropertyAnimation(self.widget_9, b'maximumWidth')
+                self.leftmenuanimatewidth.setDuration(500)
+                self.leftmenuanimatewidth.setStartValue(width)
+                self.leftmenuanimatewidth.setEndValue(newWidth)
+                self.leftmenuanimatewidth.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimatewidth.start()
+
+                self.leftmenuanimateheight = QPropertyAnimation(self.widget_9, b'maximumHeight')
+                self.leftmenuanimateheight.setDuration(1000)
+                self.leftmenuanimateheight.setStartValue(height)
+                self.leftmenuanimateheight.setEndValue(newHeight)
+                self.leftmenuanimateheight.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                self.leftmenuanimateheight.start()
+        def dark_mode_on(self):
+                if not self.dark_mode:
+                        self.RightForm.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.ContentOnEvaluatePage.setStyleSheet(
+                                "QLineEdit{border:2px solid white; border-radius: 5px;}")
+                        self.UpperPartOnPermanencyReport.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnTaskAvailable.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnTaskAssignedReport.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnAsiggningTask.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnUpdateWork.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnUserProfile.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnTDLProductivity.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnTDLProductivity_2.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnContactUs.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UpperPartOnFAQs.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        self.UserIconOnAsiggningTask.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+                        icon = QtGui.QIcon()
+                        icon.addPixmap(QtGui.QPixmap(":/Icons/Icons/moon.svg"),
+                                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                        self.pushButton_13.setIcon(icon)
+                        self.pushButton_14.setIcon(icon)
+                        self.pushButton_15.setIcon(icon)
+                        self.pushButton_16.setIcon(icon)
+                        self.pushButton_19.setIcon(icon)
+                        self.pushButton_20.setIcon(icon)
+                        self.pushButton_21.setIcon(icon)
+                        self.pushButton_22.setIcon(icon)
+                        self.pushButton_24.setIcon(icon)
+                        self.pushButton_25.setIcon(icon)
+                        self.pushButton_26.setIcon(icon)
+                        self.pushButton_27.setIcon(icon)
+                        self.pushButton_28.setIcon(icon)
+                        self.pushButton_28.setStyleSheet("#pushButton_20 {padding: 0px;} \n #pushButton_20:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_13.setStyleSheet("#pushButton_13 {padding: 0px;} \n #pushButton_13:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_14.setStyleSheet("#pushButton_14 {padding: 0px;} \n #pushButton_14:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_15.setStyleSheet("#pushButton_15 {padding: 0px;} \n #pushButton_15:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_16.setStyleSheet("#pushButton_16 {padding: 0px;} \n #pushButton_16:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_19.setStyleSheet("#pushButton_19 {padding: 0px;} \n #pushButton_19:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_20.setStyleSheet("#pushButton_20 {padding: 0px;} \n #pushButton_20:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_21.setStyleSheet("#pushButton_21 {padding: 0px;} \n #pushButton_21:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_22.setStyleSheet("#pushButton_22 {padding: 0px;} \n #pushButton_22:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_24.setStyleSheet("#pushButton_24 {padding: 0px;} \n #pushButton_24:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_25.setStyleSheet("#pushButton_25 {padding: 0px;} \n #pushButton_25:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_26.setStyleSheet("#pushButton_26 {padding: 0px;} \n #pushButton_26:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_27.setStyleSheet("#pushButton_27 {padding: 0px;} \n #pushButton_27:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_28.setStyleSheet("#pushButton_28 {padding: 0px;} \n #pushButton_28:hover{border-radius:5px; background-color: #2596be;}")
+                        self.label_40.setStyleSheet("color:black;")
+                        self.label_42.setStyleSheet("color:black;")
+                        self.label_10.setStyleSheet("color:black;")
+                        self.label_44.setStyleSheet("color:black;")
+                        self.label_9.setStyleSheet("color:black;")
+                        self.label_43.setStyleSheet("color:black;")
+                        self.widget_32.setStyleSheet("color:black;")
+                        self.ContentOnFAQs.setStyleSheet("color:black; background-color: grey;")
+                        self.widget_31.setStyleSheet("color:black;")
+                        self.dark_mode = True
+                else:
+                        icon = QtGui.QIcon()
+                        icon.addPixmap(QtGui.QPixmap(":/Icons/Icons/sun.svg"),
+                                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                        self.pushButton_13.setIcon(icon)
+                        self.pushButton_14.setIcon(icon)
+                        self.pushButton_15.setIcon(icon)
+                        self.pushButton_16.setIcon(icon)
+                        self.pushButton_19.setIcon(icon)
+                        self.pushButton_20.setIcon(icon)
+                        self.pushButton_21.setIcon(icon)
+                        self.pushButton_22.setIcon(icon)
+                        self.pushButton_24.setIcon(icon)
+                        self.pushButton_25.setIcon(icon)
+                        self.pushButton_26.setIcon(icon)
+                        self.pushButton_27.setIcon(icon)
+                        self.pushButton_28.setIcon(icon)
+                        self.RightForm.setStyleSheet("background-color:white;\n"
+                                        "border-radius:15px;")
+                        self.DashboardAdmin.setStyleSheet("#MenuButtonOnDashboard:hover{\n"
+                                                "background-color: #2596be;\n"
+                                                "}") 
+                        self.RightShit.setStyleSheet("#HeaderFrame\n"
+                                        "{\n"
+                                        "background-color: white;\n"
+                                        "}\n"
+                                        "#Table\n"
+                                        "{\n"
+                                        "background-color: #2596be;\n"
+                                        "}\n"
+                                        "\n"
+                                        "#BlockforSearch {\n"
+                                        "border-radius: 5px;\n"
+                                        "border: 2px solid #2596be;\n"
+                                        "}\n"
+                                        "")
+                        self.PageNameOnDashboard.setStyleSheet("color : #2596be;\n"
+                                                "font: bold;\n"
+                                                "")
+                        self.FeildForSearch.setStyleSheet("#FeildForSearch_2{\n"
+                                                "border-radius:5px;\n"
+                                                "background: transparent;\n"
+                                                "}\n"
+                                                "#FeildForSearch_2:focus{\n"
+                                                "border: 2px solid\n"
+                                                "}")
+                        self.pushButton_13.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconDashboard.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserIconDashboard.setStyleSheet(":hover{\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "}\n"
+                                                "")
+                        self.UserMenuOnDashboard.setStyleSheet("background-color:white;\n"
+                                                " border-radius:10px;")
+                        self.pushButton_51.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.CardHolder.setStyleSheet("#Card1{\n"
+                                        "}")
+                        self.ContentOnWriterDashboard.setStyleSheet(
+                                                "background-color: lightblue;")
+                        self.label_41.setStyleSheet("color:lightgreen;")
+                        self.pushButton_12.setStyleSheet("background-color: pink;\n"
+                                                "padding: 10px;\n"
+                                                "color: white;\n"
+                                                "")
+                        self.tableWidget_2.setStyleSheet("background-color:lightblue;")
+                        self.PageNameOnDashboard_2.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "")
+                        self.BlockforSearch_2.setStyleSheet("#BlockforSearch_2{\n"
+                                                "border: 2px solid lightblue;\n"
+                                                "border-radius: 5px;\n"
+                                                "}")
+                        self.FeildForSearch_2.setStyleSheet("#FeildForSearch_2{\n"
+                                                "border-radius:5px;\n"
+                                                "background: transparent;\n"
+                                                "}\n"
+                                                "#FeildForSearch_2:focus{\n"
+                                                "border: 2px solid\n"
+                                                "}")
+                        self.pushButton_14.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconDashboard_2.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserIconDashboard_2.setStyleSheet(":hover{\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "}\n"
+                                                "")
+                        self.UserMenuOnDashboard_2.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_137.setStyleSheet("color: #2596be;")
+                        self.pushButton_57.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.UpperPartOnPermanencyReport.setStyleSheet(
+                                                "background-color: white;")      
+                        self.MenuButtonOnPermanencyReport.setStyleSheet(":hover{\n"
+                                                                "background-color: #2596be;\n"
+                                                                "}")      
+                        self.LabelforMenuOnPermanencyReport.setStyleSheet("color : #2596be;\n"
+                                                                "font: bold;\n"
+                                                                "")
+                        self.BlockforSearchOnPermanencyReport.setStyleSheet("#BlockforSearchOnPermanencyReport{\n"
+                                                                "border: 2px solid lightblue;\n"
+                                                                "border-radius: 5px;\n"
+                                                                "}\n"
+                                                                "")
+                        self.FeildForSearchOnPermanencyReport.setStyleSheet("border-radius:5px;\n"
+                                                                "background: transparent;") 
+                        self.pushButton_15.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnPermanencyReport.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "")
+                        self.UserIconOnPermanencyReport.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserMenuOnPermanencyReport.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_138.setStyleSheet("color: #2596be;")
+                        self.pushButton_60.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.UpperPartOnTaskAvailable.setStyleSheet("background-color: white;")
+                        self.MenuButtonOnTaskAvailable.setStyleSheet(":hover{\n"
+                                                        "background-color: #2596be;\n"
+                                                        "}\n"
+                                                        "")
+                        self.LabelforMenuOnTaskAvailable.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "")
+                        self.BlockforSearchOnTaskAvailable.setStyleSheet("#BlockforSearchOnTaskAvailable{\n"
+                                                                "border: 2px solid lightblue;\n"
+                                                                "border-radius: 5px;\n"
+                                                                "}\n"
+                                                                "")
+                        self.FeildForSearchOnTaskAvailable.setStyleSheet("border-radius:5px;\n"
+                                                                "background: transparent;")
+                        self.pushButton_16.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnTaskAvailable.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "")
+                        self.UserIconOnTaskAvailable.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserMenuOnTaskAvailable.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_139.setStyleSheet("color: #2596be;")     
+                        self.pushButton_63.setStyleSheet("color:white;\n"
+                                                " background-color:white;") 
+                        self.UpperPartOnTaskAssignedReport.setStyleSheet(
+                                                "background-color: white;")                     
+                        self.MenuButtonOnTaskAssignedReport.setStyleSheet(":hover{\n"
+                                                                "background-color: #2596be;\n"
+                                                                "}")       
+                        self.LabelforMenuOnTaskAssignedReport.setStyleSheet("color : #2596be;\n"
+                                                                "font: bold;\n"
+                                                                "")
+                        self.BlockforSearchOnTaskAssignedReport.setStyleSheet("#BlockforSearchOnTaskAssignedReport{\n"
+                                                                "border: 2px solid lightblue;\n"
+                                                                "border-radius: 5px;\n"
+                                                                "}\n"
+                                                                "")
+                        self.FeildForSearchOnTaskAssignedReport.setStyleSheet("border-radius:5px;\n"
+                                                                "background: transparent;") 
+                        self.pushButton_19.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")  
+                        self.NotificationIconOnTaskAssignedReport.setStyleSheet(":hover{\n"
+                                                                        "border-radius:5px;\n"
+                                                                        "background-color: #2596be;\n"
+                                                                        "padding:15px;\n"
+                                                                        "\n"
+                                                                        "}\n"
+                                                                        "")
+                        self.UserIconOnTaskAssignedReport.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "")
+                        self.UserMenuOnTaskAssignedReport.setStyleSheet("background-color:white;\n"
+                                                                " border-radius:10px;")
+                        self.label_141.setStyleSheet("color: #2596be;") 
+                        self.pushButton_69.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.UpperPartOnAsiggningTask.setStyleSheet("background-color: white;")
+                        self.MenuButtonOnAsiggningTask.setStyleSheet(":hover{\n"
+                                                        "background-color: #2596be;\n"
+                                                        "}")
+                        self.LabelforMenuOnAsiggningTask.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "") 
+                        self.BlockforSearchOnAsiggningTask.setStyleSheet("#BlockforSearchOnAsiggningTask{\n"
+                                                                "border: 2px solid lightblue;\n"
+                                                                "border-radius: 5px;\n"
+                                                                "}\n"
+                                                                "") 
+                        self.FeildForSearchOnAsiggningTask.setStyleSheet("border-radius:5px;\n"
+                                                                "background: transparent;")
+                        self.pushButton_20.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.pushButtonOnAsiggningTask.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserIconOnAsiggningTask.setStyleSheet("#UserIconOnAsiggningTask{ border-radius : 5px;\n"
+                                                        "background-color: white;}\n"
+                                                        "#UserIconOnAsiggningTask:hover{background-color: #2596be;}") 
+                        self.UserMenuOnAsiggningTask.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_140.setStyleSheet("color: #2596be;")
+                        self.pushButton_66.setStyleSheet("color:white;\n")
+                        self.comboBox_2.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")
+                        self.dateTimeEdit.setStyleSheet("border: 2px solid grey; \n"
+                                                " border-radius:5px;\n"
+                                                " padding:5px")
+                        self.lineEdit_17.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px") 
+                        self.lineEdit_17.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")                         
+                        self.pushButton_7.setStyleSheet("background-color: pink;\n"
+                                                "padding: 10px;\n"
+                                                "color: white;\n"
+                                                "")
+                        self.pushButton.setStyleSheet("background-color: pink;\n"
+                                        "padding: 10px;\n"
+                                        "color: white;\n"
+                                        "")                 
+                        self.UpperPartOnUpdateWork.setStyleSheet("background-color: white;")
+                        self.MenuButtonOnUpdateWork.setStyleSheet(":hover{\n"
+                                                        "background-color: #2596be;\n"
+                                                        "}")   
+                        self.LabelforMenuOnUpdateWork.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "")
+                        self.BlockforSearchOnUpdateWork.setStyleSheet("#BlockforSearchOnUpdateWork{\n"
+                                                        "border: 2px solid lightblue;\n"
+                                                        "border-radius: 5px;\n"
+                                                        "}\n"
+                                                        "")     
+                        self.FeildForSearchOnUpdateWork.setStyleSheet("border-radius:5px;\n"
+                                                        "background: transparent;")  
+                        self.pushButton_21.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnUpdateWork.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "") 
+                        self.UserIconOnUpdateWork.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "") 
+                        self.UserMenuOnUpdateWork.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_142.setStyleSheet("color: #2596be;")
+                        self.pushButton_72.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.comboBox_3.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")
+                        self.pushButton_11.setStyleSheet("background-color: pink;\n"
+                                                "padding: 10px;\n"
+                                                "color: white;\n"
+                                                "")
+                        self.pushButton_10.setStyleSheet("background-color: pink;\n"
+                                                "padding: 10px;\n"
+                                                "color: white;\n"
+                                                "")
+                        self.PageNameOnDashboard_3.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "")
+                        self.BlockforSearch_3.setStyleSheet("#BlockforSearch_3{\n"
+                                                "border: 2px solid lightblue;\n"
+                                                "border-radius: 5px;\n"
+                                                "}\n"
+                                                "")
+                        self.FeildForSearch_3.setStyleSheet("#FeildForSearch_2{\n"
+                                                "border-radius:5px;\n"
+                                                "background: transparent;\n"
+                                                "}\n"
+                                                "#FeildForSearch_2:focus{\n"
+                                                "border: 2px solid\n"
+                                                "}")
+                        self.pushButton_22.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconDashboard_3.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserIconDashboard_3.setStyleSheet(":hover{\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "}\n"
+                                                "")
+                        self.UserMenuOnDashboard_3.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_150.setStyleSheet("color: #2596be;")
+                        self.pushButton_96.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.spinBox_2.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")
+                        self.comboBox_9.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")
+                        self.pushButton_8.setStyleSheet("background-color: pink;\n"
+                                                "padding: 15px;\n"
+                                                "color: white;\n"
+                                                "")
+                        self.UpperPartOnUserProfile.setStyleSheet("background-color: white;")
+                        self.MenuButtonOnUserProfile.setStyleSheet(":hover{\n"
+                                                        "background-color: #2596be;\n"
+                                                        "}")
+                        self.LabelforMenuOnUserProfile.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "")
+                        self.BlockforSearchOnUserProfile.setStyleSheet("#BlockforSearchOnUserProfile{\n"
+                                                        "border: 2px solid lightblue;\n"
+                                                        "border-radius: 5px;\n"
+                                                        "}\n"
+                                                        "")
+                        self.FeildForSearchOnUserProfile.setStyleSheet("border-radius:5px;\n"
+                                                        "background: transparent;")
+                        self.pushButton_24.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnUserProfile.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "")
+                        self.UserIconOnUserProfile.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserMenuOnUserProfile.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_143.setStyleSheet("color: #2596be;")
+                        self.pushButton_75.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.pushButton_9.setStyleSheet("background-color: pink;\n"
+                                                "padding: 10px;\n"
+                                                "color: white;\n"
+                                                "")
+                        self.UpperPartOnTDLProductivity.setStyleSheet(
+                                                "background-color: white;")
+                        self.MenuButtonOnTDLProductivity.setStyleSheet(":hover{\n"
+                                                        "background-color: #2596be;\n"
+                                                        "}")
+                        self.LabelforMenuOnTDLProductivity.setStyleSheet("color : #2596be;\n"
+                                                                "font: bold;\n"
+                                                                "")
+                        self.BlockforSearchOnTDLProductivity.setStyleSheet("#BlockforSearchOnTDLProductivity{\n"
+                                                                "border: 2px solid lightblue;\n"
+                                                                "border-radius: 5px;\n"
+                                                                "}\n"
+                                                                "")
+                        self.FeildForSearchOnTDLProductivity.setStyleSheet("border-radius:5px;\n"
+                                                                "background: transparent;")
+                        self.pushButton_25.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnTDLProductivity.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "")
+                        self.UserIconOnTDLProductivity.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserMenuOnTDLProductivity.setStyleSheet("background-color:white;\n"
+                                                        " border-radius:10px;")
+                        self.label_145.setStyleSheet("color: #2596be;")
+                        self.pushButton_81.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.pushButton_18.setStyleSheet("color: white;\n"
+                                                "padding: 10px;\n"
+                                                "background-color: pink;")
+                        self.lineEdit.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")
+                        # self.pushButton_17.setStyleSheet("color: white;\n"
+                        #                         "padding: 10px;\n"
+                        #                         "background-color: pink;")
+                        self.dateEdit_3.setStyleSheet("border: 2px solid grey; \n"
+                                        " border-radius:5px;\n"
+                                        " padding:5px")
+                        self.UpperPartOnTDLProductivity_2.setStyleSheet(
+                                        "background-color: white;")
+                        self.MenuButtonOnTDLProductivity_2.setStyleSheet(":hover{\n"
+                                                                "background-color: #2596be;\n"
+                                                                "}")
+                        self.LabelforMenuOnTDLProductivity_2.setStyleSheet("color : #2596be;\n"
+                                                                "font: bold;\n"
+                                                                "")
+                        self.BlockforSearchOnTDLProductivity_2.setStyleSheet("#BlockforSearchOnTDLProductivity{\n"
+                                                                "border: 2px solid lightblue;\n"
+                                                                "border-radius: 5px;\n"
+                                                                "}\n"
+                                                                "")
+                        self.FeildForSearchOnTDLProductivity_2.setStyleSheet("border-radius:5px;\n"
+                                                                "background: transparent;")
+                        self.pushButton_26.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnTDLProductivity_2.setStyleSheet(":hover{\n"
+                                                                "border-radius:5px;\n"
+                                                                "background-color: #2596be;\n"
+                                                                "padding:15px;\n"
+                                                                "\n"
+                                                                "}\n"
+                                                                "")
+                        self.UserIconOnTDLProductivity_2.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.ContentOnEvaluatePage.setStyleSheet(
+                                "QLineEdit{border:2px solid black; border-radius: 5px;}")
+                        self.label_61.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_62.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_63.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_64.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_58.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_60.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_65.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_66.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_59.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_67.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_57.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_55.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-top: 0px; border-radius: 10px; padding: 10px;")
+                        self.label_56.setStyleSheet(
+                                "border-radius:10px; border: 2px solid lightblue; border-left: 0px; border-radius: 10px; padding: 10px;")
+                        self.pushButton_23.setStyleSheet(
+                                "#pushButton_23{\n"
+                                                "color: white;\n"
+                                                "padding: 10px;\n"
+                                                "background-color: pink;}\n"
+                                                "#pushButton_23:hover{\n"
+                                                "color: white;\n"
+                                                "padding: 5px;\n"
+                                                "background-color: lightblue;}")
+                        self.UpperPartOnContactUs.setStyleSheet("background-color: white;")
+                        self.MenuButtonOnContactUs.setStyleSheet(":hover{\n"
+                                                        "background-color: #2596be;\n"
+                                                        "}")
+                        self.LabelforMenuOnContactUs.setStyleSheet("color : #2596be;\n"
+                                                        "font: bold;\n"
+                                                        "")
+                        self.BlockforSearchOnContactUs.setStyleSheet("#BlockforSearchOnContactUs{\n"
+                                                        "border: 2px solid lightblue;\n"
+                                                        "border-radius: 5px;\n"
+                                                        "}\n"
+                                                        "")
+                        self.FeildForSearchOnContactUs.setStyleSheet("border-radius:5px;\n"
+                                                        "background: transparent;")
+                        self.pushButton_27.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnContactUs.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserIconOnContactUs.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.UserMenuOnContactUs.setStyleSheet("background-color:white;\n"
+                                                " border-radius:10px;")
+                        self.label_148.setStyleSheet("color: #2596be;")
+                        self.pushButton_90.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.ContentOnContactUs.setStyleSheet("background-color: lightgrey;\n"
+                                                "border-radius: 15px;")
+                        self.lineEdit_15.setStyleSheet("border-radius: 5px;\n"
+                                        "border: 2px solid grey;")
+                        self.lineEdit_16.setStyleSheet("border-radius: 5px;\n"
+                                        "border: 2px solid grey;")
+                        self.plainTextEdit.setStyleSheet("border-radius: 15px;\n"
+                                                "border: 2px solid grey;")
+                        self.pushButton_44.setStyleSheet("background-color: lightblue;\n"
+                                                "color: white;\n"
+                                                "padding: 10px;")
+                        self.UpperPartOnFAQs.setStyleSheet("background-color: white;")
+                        self.MenuButtonOnFAQs.setStyleSheet(":hover{\n"
+                                                "background-color: #2596be;\n"
+                                                "}")
+                        self.LabelforMenuOnFAQs.setStyleSheet("color : #2596be;\n"
+                                                "font: bold;\n"
+                                                "")
+                        self.BlockforSearchOnFAQs.setStyleSheet("#BlockforSearchOnFAQs{\n"
+                                                        "border: 2px solid lightblue;\n"
+                                                        "border-radius: 5px;\n"
+                                                        "}\n"
+                                                        "")
+                        self.FeildForSearchOnFAQs.setStyleSheet("border-radius:5px;\n"
+                                                        "background: transparent;")
+                        self.pushButton_28.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.NotificationIconOnFAQs.setStyleSheet(":hover{\n"
+                                                        "border-radius:5px;\n"
+                                                        "background-color: #2596be;\n"
+                                                        "padding:15px;\n"
+                                                        "\n"
+                                                        "}\n"
+                                                        "")
+                        self.UserIconOnFAQs.setStyleSheet(":hover{\n"
+                                                "border-radius:5px;\n"
+                                                "background-color: #2596be;\n"
+                                                "padding:15px;\n"
+                                                "\n"
+                                                "}\n"
+                                                "")
+                        self.UserMenuOnFAQs.setStyleSheet("background-color:white;\n"
+                                                " border-radius:10px;")
+                        self.label_149.setStyleSheet("color: #2596be;")
+                        self.pushButton_93.setStyleSheet("color:white;\n"
+                                                " background-color:white;")
+                        self.pushButton_2.setStyleSheet("background-color:lightblue; \n"
+                                                " border-bottom: 2px solid grey;\n"
+                                                " padding:10px;")
+                        self.label_3.setStyleSheet(
+                                                "background-color: lightgrey; border-radius: 15px; padding:10px;")
+                        self.pushButton_3.setStyleSheet("background-color:lightblue; \n"
+                                                " border-bottom: 2px solid grey;\n"
+                                                " padding:10px;")
+                        self.label_6.setStyleSheet(
+                                                "background-color: lightgrey; border-radius: 15px; padding:10px;")
+                        self.pushButton_4.setStyleSheet("background-color:lightblue; \n"
+                                                " border-bottom: 2px solid grey;\n"
+                                                " padding:10px;")
+                        self.label_7.setStyleSheet(
+                                                "background-color: lightgrey; border-radius: 15px; padding:10px;")
+                        self.pushButton_5.setStyleSheet("background-color:lightblue; \n"
+                                                " border-bottom: 2px solid grey;\n"
+                                                " padding:10px;")
+                        self.label_38.setStyleSheet(
+                                                "background-color: lightgrey; border-radius: 15px; padding:10px;")
+                        self.pushButton_6.setStyleSheet("background-color:lightblue; \n"
+                                                " border-bottom: 2px solid grey;\n"
+                                                " padding:10px;")
+                        self.label_39.setStyleSheet(
+                                "background-color: lightgrey; border-radius: 15px; padding:10px;")
+                        self.widget_9.setStyleSheet("background-color:lightgreen;")
+                        self.widget_14.setStyleSheet("background-color:lightgrey;\n"
+                                        " padding:10px;")
+                        self.widget_15.setStyleSheet("background-color:white; \n"
+                                        " padding:10px;")
+                        self.widget_17.setStyleSheet("background-color:lightgrey;\n"
+                                        " padding:10px;")
+                        self.widget_18.setStyleSheet("background-color:white; \n"
+                                        " padding:10px;")
+                        self.widget_27.setStyleSheet("background-color:lightgrey;\n"
+                                        " padding:10px;")
+                        self.widget_28.setStyleSheet("background-color:white; \n"
+                                        " padding:10px;")
+                        self.widget_35.setStyleSheet("background-color:lightgrey;\n"
+                                        " padding:10px;")
+                        self.widget_36.setStyleSheet("background-color:white; \n"
+                                        " padding:10px;")
+                        self.label_37.setStyleSheet("padding: 10px; color: lightblue")
+                        self.pushButton_13.setStyleSheet("#pushButton_13 {padding: 0px;} \n #pushButton_13:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_14.setStyleSheet("#pushButton_14 {padding: 0px;} \n #pushButton_14:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_15.setStyleSheet("#pushButton_15 {padding: 0px;} \n #pushButton_15:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_16.setStyleSheet("#pushButton_16 {padding: 0px;} \n #pushButton_16:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_19.setStyleSheet("#pushButton_19 {padding: 0px;} \n #pushButton_19:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_20.setStyleSheet("#pushButton_20 {padding: 0px;} \n #pushButton_20:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_21.setStyleSheet("#pushButton_21 {padding: 0px;} \n #pushButton_21:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_22.setStyleSheet("#pushButton_22 {padding: 0px;} \n #pushButton_22:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_24.setStyleSheet("#pushButton_24 {padding: 0px;} \n #pushButton_24:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_25.setStyleSheet("#pushButton_25 {padding: 0px;} \n #pushButton_25:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_26.setStyleSheet("#pushButton_26 {padding: 0px;} \n #pushButton_26:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_27.setStyleSheet("#pushButton_27 {padding: 0px;} \n #pushButton_27:hover{border-radius:5px; background-color: #2596be;}")
+                        self.pushButton_28.setStyleSheet("#pushButton_28 {padding: 0px;} \n #pushButton_28:hover{border-radius:5px; background-color: #2596be;}")
+                        self.dark_mode = False
+        def add_data_in_dashboard(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_JobRole != %s AND writer_Leader = %s ",('Team Leader', self.Writer_Name))
+                record = cur.fetchall()
+                i = 0
+                j = 0
+                writer_ids_list = []
+                while i< len(record):
+                        writer_ID_to_get_data = record[i][j]
+                        writer_ids_list.append(writer_ID_to_get_data)
+                        i+=1
+                i = 0
+                while i < len(writer_ids_list): 
+                        writer_ID_to_get_data = writer_ids_list[i]
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("SELECT * from writer where writer_ID=%s ",(writer_ID_to_get_data))
+                        record_but_another_one = cur.fetchall()
+                        self.tableWidget_2.setRowCount(len(writer_ids_list))
+                        self.comboBox_11.addItem(str(record_but_another_one[0][1]+" "+record_but_another_one[0][2]))
+                        self.comboBox_2.addItem(str(record_but_another_one[0][1]+" "+record_but_another_one[0][2]))
+                        self.tableWidget_2.setItem(i, 0, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][1]+" "+record_but_another_one[0][2])))
+                        self.tableWidget_2.setItem(i, 1, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][12])))
+                        self.tableWidget_2.setItem(i, 2, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][3])))
+                        i+=1
+        def showmessageandhidemessage(self, objecthere):
+                self.objecthere = objecthere
+                self.animatemessageview_width = QPropertyAnimation(self.objecthere, b'maximumWidth')
+                self.animatemessageview_width.setDuration(1000)
+                self.animatemessageview_width.setStartValue(0)
+                self.animatemessageview_width.setEndValue(100000)
+                self.animatemessageview_width.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.animatemessageview__height = QPropertyAnimation(self.objecthere, b'maximumHeight')
+                self.animatemessageview__height.setDuration(1000)
+                self.animatemessageview__height.setStartValue(0)
+                self.animatemessageview__height.setEndValue(100)
+                self.animatemessageview__height.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.delay = QPropertyAnimation(self.objecthere, b'maximumWidth')
+                self.delay.setDuration(1000)
+                self.delay.setStartValue(100000)
+                self.delay.setEndValue(100000)
+                self.delay.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.hidemessageanime_width = QPropertyAnimation(self.objecthere, b'maximumWidth')
+                self.hidemessageanime_width.setDuration(1000)
+                self.hidemessageanime_width.setStartValue(100000)
+                self.hidemessageanime_width.setEndValue(0)
+                self.hidemessageanime_width.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.hidemessageanime_height = QPropertyAnimation(self.objecthere, b'maximumHeight')
+                self.hidemessageanime_height.setDuration(1000)
+                self.hidemessageanime_height.setStartValue(100)
+                self.hidemessageanime_height.setEndValue(0)
+                self.hidemessageanime_height.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+
+                self.Sequenceformessage = QSequentialAnimationGroup()
+                self.Sequenceformessage.addAnimation(self.animatemessageview_width)
+                self.Sequenceformessage.addAnimation(self.animatemessageview__height)
+                self.Sequenceformessage.addAnimation(self.delay)
+                self.Sequenceformessage.addAnimation(self.hidemessageanime_height)
+                self.Sequenceformessage.addAnimation(self.hidemessageanime_width)
+                self.Sequenceformessage.start()
+        def add_data_in_team_report(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_JobRole != %s AND writer_Leader = %s ",('Team Leader', self.Writer_Name))
+                record = cur.fetchall()
+                i = 0
+                j = 0
+                writer_ids_list = []
+                while i< len(record):
+                        writer_ID_to_get_data = record[i][j]
+                        writer_ids_list.append(writer_ID_to_get_data)
+                        i+=1
+                i = 0
+                while i < len(writer_ids_list): 
+                        writer_ID_to_get_data = writer_ids_list[i]
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("SELECT * from writer where writer_ID=%s ",(writer_ID_to_get_data))
+                        record_but_another_one = cur.fetchall()
+
+                        self.tableWidget.setRowCount(len(writer_ids_list))
+                        self.tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][1]+" "+record_but_another_one[0][2])))
+                        self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][4]+"\n"+"+"+record_but_another_one[0][5])))
+                        self.tableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][4])))
+                        self.tableWidget.setItem(i, 3, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][5])))
+                        self.tableWidget.setItem(i, 4, QtWidgets.QTableWidgetItem(str(record_but_another_one[0][3])))
+                        i+=1
+                print("Data has been added at the Table On Team Report Form.")
+        def add_data_in_Task_assigning_report(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_JobRole != %s AND writer_Leader = %s ",('Team Leader', self.Writer_Name))
+                record = cur.fetchall()
+                i = 0
+                j = 0
+                writer_ids_list = []
+                writer_name_list = []
+                while i< len(record):
+                        writer_ID_to_get_data = record[i][0]
+                        writer_name_list.append(record[i][1]+" "+record[i][2])
+                        writer_ids_list.append(writer_ID_to_get_data)
+                        i+=1
+                i = 0
+                while i < len(writer_ids_list): 
+                        writer_ID_to_get_data = writer_ids_list[i]
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("SELECT * from task where writer_ID_fk= %s ",(writer_ID_to_get_data))
+                        record_but_another_one = cur.fetchall()
+                        cur.execute("SELECT * from writer where writer_ID= %s ",(writer_ID_to_get_data))
+                        record_new = cur.fetchall()
+                        j = 0
+                        while j < len(record_but_another_one):
+                                self.ContentOnTaskAssignedReport.setRowCount(len(writer_ids_list))
+                                self.ContentOnTaskAssignedReport.setItem(j, 0, QtWidgets.QTableWidgetItem(str(str(record_new[0][1])+" "+str(record_new[0][2]))))
+                                self.ContentOnTaskAssignedReport.setItem(j, 1, QtWidgets.QTableWidgetItem(str(record_but_another_one[j][0])))
+                                self.ContentOnTaskAssignedReport.setItem(j, 2, QtWidgets.QTableWidgetItem(str(record_but_another_one[j][1])))
+                                self.ContentOnTaskAssignedReport.setItem(j, 3, QtWidgets.QTableWidgetItem(str(record_but_another_one[j][5])))
+                                j+=1
+                        i+=1
+                print("Data has been added at the Table On Task Assigned Form.")
+        def add_data_in_Manage_Team_Leaves(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_JobRole != %s AND writer_Leader = %s ",('Team Leader', self.Writer_Name))
+                record = cur.fetchall()
+                i = 0
+                j = 0
+                writer_ids_list = []
+                writer_name_list = []
+                while i< len(record):
+                        writer_ID_to_get_data = record[i][0]
+                        writer_name_list.append(record[i][1]+" "+record[i][2])
+                        writer_ids_list.append(writer_ID_to_get_data)
+                        i+=1
+                i = 0
+                while i < len(writer_ids_list): 
+                        writer_ID_to_get_data = writer_ids_list[i]
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("SELECT * from leaves where writer_ID_fk= %s ",(writer_ID_to_get_data))
+                        record_but_another_one = cur.fetchall()
+                        cur.execute("SELECT * from writer where writer_ID= %s ",(writer_ID_to_get_data))
+                        record_new = cur.fetchall()
+                        j = 0
+                        while j < len(record_but_another_one):
+                                self.tableWidget_6.setRowCount(1000)
+                                self.tableWidget_6.setItem(j, 0, QtWidgets.QTableWidgetItem(str(str(record_new[0][1])+" "+str(record_new[0][2]))))
+                                self.tableWidget_6.setItem(j, 1, QtWidgets.QTableWidgetItem(str(record_but_another_one[j][4])))
+                                self.tableWidget_6.setItem(j, 2, QtWidgets.QTableWidgetItem(str(record_but_another_one[j][6])))
+                                self.tableWidget_6.setItem(j, 3, QtWidgets.QTableWidgetItem(str(record_but_another_one[j][7])))
+                                j+=1
+                        i+=1
+                print("Data has been added at the Table On Task Assigned Form.")
+        def on_click_Add_on_TDL(self):
+                if self.widget_8.height() != 0:
+                        self.opencustomfeilds = QPropertyAnimation(self.widget_8, b'maximumHeight')
+                        self.opencustomfeilds.setDuration(1000)
+                        self.opencustomfeilds.setStartValue(self.widget_8.height())
+                        self.opencustomfeilds.setEndValue(0)
+                        self.opencustomfeilds.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.opencustomfeilds.start()
+        def add_data_in_permanency(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from writer where writer_JobRole != %s AND writer_Leader = %s ",('Team Leader', self.Writer_Name))
+                record = cur.fetchall()
+                i = 0
+                self.writer_ids_list = []
+                self.writer_name_list = []
+                while i< len(record):
+                        writer_ID_to_get_data = record[i][0]
+                        self.writer_name_list.append(record[i][1]+" "+record[i][2])
+                        self.writer_ids_list.append(writer_ID_to_get_data)
+                        i+=1
+                i = 0
+                while i < len(self.writer_ids_list):
+                        self.ContentOnPermanencyReport.setRowCount(len(self.writer_ids_list))
+                        self.ContentOnPermanencyReport.setItem(i, 0, QtWidgets.QTableWidgetItem(str(self.writer_name_list[i])))
+                        self.ContentOnPermanencyReport.setItem(i, 1, QtWidgets.QTableWidgetItem(str(record[i][21])))
+                        self.ContentOnPermanencyReport.setItem(i, 2, QtWidgets.QTableWidgetItem(str(record[i][22])))
+                        i+=1
+                print("Data has been added at the Table On Permanent Report Form.")
+        def add_data_in_received_task(self):
+                i = 0
+                while i < len(self.writer_ids_list):
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("SELECT * from task where writer_ID_fk = %s",str(self.writer_ids_list[i]))
+                        self.Tasks = cur.fetchall()
+                        self.tableWidget_3.setRowCount(len(self.writer_ids_list))
+                        j = 0
+                        while j < len(self.Tasks):
+                                if self.Tasks[j][4] == "Forwarded":
+                                        self.tableWidget_3.setItem(j, 0, QtWidgets.QTableWidgetItem(str(self.Tasks[j][0])))
+                                        self.tableWidget_3.setItem(j, 1, QtWidgets.QTableWidgetItem(str(self.Tasks[j][1])))
+                                        self.tableWidget_3.setItem(j, 2, QtWidgets.QTableWidgetItem(str(self.writer_name_list[i])))
+                                        self.tableWidget_3.setItem(j, 3, QtWidgets.QTableWidgetItem(str(self.Tasks[j][6])))
+                                        self.tableWidget_3.setItem(j, 4, QtWidgets.QTableWidgetItem(str(self.Tasks[j][4])))
+                                j+=1
+                        i+=1
+                print("Data has been added at the Table On Recieved Task Form.")
+        def add_data_in_TDL_Productivity(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from custom_task_tl where writer_ID_fk = %s",str(self.TL_ID))
+                Custom_Tasks = cur.fetchall()
+                self.tableWidget_5.setRowCount(len(Custom_Tasks))
+                j = 0
+                while j < len(Custom_Tasks):
+                        if Custom_Tasks[j][3] != "Confirmed":
+                                self.comboBox_3.addItem(str(Custom_Tasks[j][1]))
+                                self.tableWidget_5.setItem(j, 0, QtWidgets.QTableWidgetItem(str(Custom_Tasks[j][1])))
+                                self.tableWidget_5.setItem(j, 1, QtWidgets.QTableWidgetItem(str(Custom_Tasks[j][2])))
+                        j+=1
+                print("Data has been added at the Table On TDL/Productivity Form.")
+        def write_file(self, directory, document):
+        # Convert binary data to proper format and write it on Hard Disk
+                self.directory = directory
+                self.document = document
+                with open(directory, 'wb') as file:
+                        file.write(document)
+        def on_selectionChange(self, selected, deselect): 
+                try:
+                        for ix in selected.indexes():
+                                if ix.column() == 0:
+                                        self.text_from_column = str(self.tableWidget_3.selectedItems()[ix.column()].text())
+                                        self.label_18.setText(self.text_from_column)
+                                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                                        cur = con.cursor()
+                                        cur.execute("SELECT task_Topic from task where task_ID = %s",str(self.text_from_column))
+                                        record = cur.fetchall()
+                                        Topic = str(record[0][0])
+                                        self.label_68.setText(Topic)
+                except:
+                        self.label_18.setText("Select a Task")
+                        self.label_68.setText("No Task Selected")
+        def On_Clicking_Download_Button_in_Recieved_Task(self):
+                try:
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("SELECT task_uploaded_file from task where task_ID = %s",self.text_from_column)
+                        file = cur.fetchall()
+                        self.write_file(r"./Documents/"+self.text_from_column,file[0][0])
+                except:
+                        pass
+        def On_Clicking_Update_Button_in_Recieved_Task(self):
+                try:
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("update task set task_Palagrism=%s where task_ID = %s",(self.doubleSpinBox.text() , self.text_from_column))
+                        con.commit()
+                        cur.close()
+                except:
+                        print("Error in function ===>>> def named On_Clicking_Update_Button_in_Recieved_Task()")
+        def Insert_data_at_assign_to_db(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("Select * from writer where writer_FName+" "+writer_LName = %s",(self.comboBox_2.currentText()))
+                record = cur.fetchall()
+                cur.execute("INSERT INTO task (task_Topic, writer_ID_fk, task_Deadline, task_WordCount) values (%s,%s,%s,%s)",(self.lineEdit_14.text() , record[0][0], self.dateTimeEdit.text(), self.lineEdit_17.text()))
+                con.commit()
+                cur.close()
+        def Create_New_Custom_Task(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("INSERT INTO custom_task_tl (custom_Title, custom_Deadline, writer_ID_fk) values (%s,%s,%s)",(self.lineEdit.text(), self.dateEdit_3.text(), self.TL_ID))
+                con.commit()
+                cur.close()
+                self.add_data_in_TDL_Productivity()
+        def on_combobox_changed(self, value):
+                self.value = value
+                if value == "Confirmed":
+                        self.OpenWidget_to_open_on_update_work = QPropertyAnimation(self.widget_23, b'maximumHeight')
+                        self.OpenWidget_to_open_on_update_work.setDuration(1000)
+                        self.OpenWidget_to_open_on_update_work.setStartValue(self.widget_23.height())
+                        self.OpenWidget_to_open_on_update_work.setEndValue(0)
+                        self.OpenWidget_to_open_on_update_work.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.OpenWidget_to_open_on_update_work.start()
+                else:
+                        self.OpenWidget_to_open_on_update_work = QPropertyAnimation(self.widget_23, b'maximumHeight')
+                        self.OpenWidget_to_open_on_update_work.setDuration(1000)
+                        self.OpenWidget_to_open_on_update_work.setStartValue(0)
+                        self.OpenWidget_to_open_on_update_work.setEndValue(200)
+                        self.OpenWidget_to_open_on_update_work.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.OpenWidget_to_open_on_update_work.start()
+        def on_combobox_changed(self, value):
+                self.value = value
+                if value == "Custom Designation":
+                        self.OpenWidget_to_open_on_update_work = QPropertyAnimation(self.widget_94, b'maximumHeight')
+                        self.OpenWidget_to_open_on_update_work.setDuration(1000)
+                        self.OpenWidget_to_open_on_update_work.setStartValue(0)
+                        self.OpenWidget_to_open_on_update_work.setEndValue(200)
+                        self.OpenWidget_to_open_on_update_work.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.OpenWidget_to_open_on_update_work.start()
+                else:
+                        self.OpenWidget_to_open_on_update_work = QPropertyAnimation(self.widget_94, b'maximumHeight')
+                        self.OpenWidget_to_open_on_update_work.setDuration(1000)
+                        self.OpenWidget_to_open_on_update_work.setStartValue(self.widget_94.height())
+                        self.OpenWidget_to_open_on_update_work.setEndValue(0)
+                        self.OpenWidget_to_open_on_update_work.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+                        self.OpenWidget_to_open_on_update_work.start()
+        def Insert_data_to_db_from_update_task(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("Select custom_ID from custom_task_tl where custom_Title = %s",(self.comboBox_3.currentText()))
+                record = cur.fetchall()
+                if self.comboBox_4.currentText() == "Delayed":
+                        print(self.comboBox_4.currentText(), self.dateEdit.text() ,record[0][0])
+                        cur.execute("update custom_task_tl set custom_Status = %s,custom_Deadline =%s where custom_ID = %s",(self.comboBox_4.currentText(), self.dateEdit.text() ,record[0][0]))
+                        con.commit()
+                        cur.close()
+                else:
+                        cur.execute("update custom_task_tl set custom_Status = %s, where custom_ID = %s",(self.comboBox_4.currentText(), record[0][0]))
+                        con.commit()
+                        cur.close()
+        # This function is stiil on an error. Resolve the error. It is way more critical
+        def Insert_data_to_db_from_update_designation(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                if self.comboBox_12.currentText() == "Custom Designation":
+                        cur.execute("update writer set writer_JobRole = %s where writer_FName+" "+writer_LName= %s",(self.lineEdit_33.text(), self.comboBox_11.currentText()))
+                else:
+                        cur.execute("update writer set writer_JobRole =  %s where writer_FName+" "+writer_LName= %s",(self.comboBox_12.currentText(), self.comboBox_11.currentText()))
+                con.commit()
+                cur.close()
+        def add_data_in_manage_leave_table(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("SELECT * from leaves where writer_ID_fk = %s ",self.TL_ID)
+                record = cur.fetchall()
+                writer_ID_fk = []
+                leaves_Amount = []
+                leaves_Reason = []
+                leaves_Date = []
+                leaves_DeductionType = []
+                leaves_status = []
+                row = 0
+                while row < len(record):
+                        writer_ID_fk.append(record[row][1])
+                        leaves_Amount.append(record[row][2])
+                        leaves_Reason.append(record[row][4])
+                        leaves_Date.append(record[row][6])
+                        leaves_DeductionType.append(record[row][3])
+                        leaves_status.append(record[row][7])
+                        if str(self.TL_ID) == str(writer_ID_fk[row]):
+                                self.tableWidget_4.setRowCount(len(record))
+                                self.tableWidget_4.setItem(row, 0, QtWidgets.QTableWidgetItem(str(leaves_Amount[row])))
+                                self.tableWidget_4.setItem(row, 1, QtWidgets.QTableWidgetItem(str(leaves_Reason[row])))
+                                self.tableWidget_4.setItem(row, 2, QtWidgets.QTableWidgetItem(leaves_DeductionType[row]))
+                                self.tableWidget_4.setItem(row, 3, QtWidgets.QTableWidgetItem(leaves_Date[row]))
+                                self.tableWidget_4.setItem(row, 4, QtWidgets.QTableWidgetItem(leaves_status[row]))
+                        row += 1
+                print("Data has been added at the Table On Manage Leave Form.")
+        def on_click_upload_picture(self):
+                directory, _ = QtWidgets.QFileDialog.getOpenFileName()
+                if directory != '':
+                        with open(directory, "rb") as File:
+                                self.BinaryData_from_manage_leaves = File.read()
+        def On_click_submit_on_Manage_Leaves(self):
+                total_list = 0
+                if self.spinBox_2.text() == 0 or self.spinBox_2.text() == "0":
+                        # self.MessageOnManageLeaves.setText("Number of leaves cannot contain ""0"" value")
+                        # self.showmessageandhidemessage(self.MessageOnManageLeaves)
+                        pass
+                elif self.textEdit.toPlainText() == '':
+                        # self.MessageOnManageLeaves.setText("Reason feild cannot be empty.")
+                        # self.showmessageandhidemessage(self.MessageOnManageLeaves)
+                        pass
+                elif  len(self.textEdit.toPlainText().split(" ")) < 150:
+                        total_list = len(self.textEdit.toPlainText().split(" "))
+                        # self.MessageOnManageLeaves.setText("Reason feild must contain a valid reason for about 150 words. Total word counts for now is "+str(total_list))
+                        # self.showmessageandhidemessage(self.MessageOnManageLeaves)
+                else:
+                        # self.MessageOnManageLeaves.setText("Your leaves and deduction types are updated.")
+                        # self.showmessageandhidemessage(self.MessageOnManageLeaves)
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("insert into leaves (writer_ID_fk, leaves_Amount, leaves_DeductionType, leaves_Reason, leaves_document, leaves_from_date, leaves_status) values (%s,%s,%s,%s,%s,%s,%s)",(
+                                self.TL_ID,
+                                str(int(self.spinBox_2.text())),
+                                self.comboBox_9.currentText(),
+                                self.textEdit.toPlainText(),
+                                str(self.BinaryData_from_manage_leaves),
+                                self.dateEdit_2.text(),
+                                "Pending",
+                                ))
+                        con.commit()
+                        con.close()
+                        self.add_data_in_manage_leave_table()
+        def On_click_change_picture_on_profile(self):
+                try:
+                        directory, _ = QtWidgets.QFileDialog.getOpenFileName()
+                        with open(directory, "rb") as File:
+                                self.BinaryData_from_picture = File.read()
+                        con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                        cur = con.cursor()
+                        cur.execute("update writer set writer_Image = %s where writer_Email = %s ",(self.BinaryData_from_picture, self.Writer_Email))
+                        con.commit()
+                        con.close()
+                        print("Picture Updated")
+                except:
+                        print("There was an error uploading picture. Please upload maximum of 5 MB file.")
+        def Add_data_to_Designation_Combo_Box(self):
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("select designation_Title from designation")
+                record = cur.fetchall()
+                i = 0
+                while i < len(record):
+                        self.comboBox_12.addItem(record[i][0])
+                        i+=1
+                con.commit()
+                con.close()
+                self.comboBox_12.addItem("Custom Designation")
+        def function_to_be_called_to_add_data(self):
+                self.Connect_Functions_With_Button()
+                self.add_data_in_dashboard()
+                self.add_data_in_team_report()
+                self.add_data_in_Task_assigning_report()
+                self.add_data_in_permanency()
+                self.add_data_in_received_task()
+                self.add_data_in_TDL_Productivity()
+                self.add_data_in_manage_leave_table()
+                self.add_data_in_Manage_Team_Leaves()
+                self.Add_data_to_Designation_Combo_Box()
+        def last_details(self):
+                self.label_46.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+                self.label_19.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+        def Connect_Functions_With_Button(self):
+                # Opening Pages
+                self.DashboardBtn.clicked.connect(self.show_Dashboard)
+                self.UpdateRecievedTaskBtn.clicked.connect(self.show_RecievedTask)
+                self.WriterProgressBtn.clicked.connect(self.show_TeamReport)
+                self.PermanentReportBtn.clicked.connect(self.show_PermanencyReport)
+                self.TaskApprovedBtn.clicked.connect(self.show_TaskAvailable)
+                self.TaskAssignedBtn.clicked.connect(self.show_TaskAssinged)
+                self.AssignTaskBtn.clicked.connect(self.show_AssignTask)
+                self.WordCountReport.clicked.connect(self.show_UpdateWork)
+                self.ManageLeavesBtn.clicked.connect(self.show_ManageLeaves)
+                self.UpdateDesignationBtn.clicked.connect(self.show_Update_Designation)
+                self.ProfileBtn.clicked.connect(self.show_UserProfile)
+                self.TDLBtn.clicked.connect(self.show_TDLProductivity)
+                self.ManageTeamLeavesBtn.clicked.connect(self.show_MangeTeamLeaves)
+                self.ManageExpensesBtn.clicked.connect(self.show_EvaluationForm)
+                self.ContactUsBtn.clicked.connect(self.show_ContactUs)
+                self.FAQsBtn.clicked.connect(self.show_FAQs)
+
+                # Opening Menu Function
+                self.MenuButtonOnDashboard.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnDashboard_2.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnPermanencyReport.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnTaskAvailable.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnTaskAssignedReport.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnAsiggningTask.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnDashboard_3.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnUpdateWork.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnUserProfile.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnTDLProductivity.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnTDLProductivity_2.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnContactUs.clicked.connect(self.open_leftmenu)
+                self.MenuButtonOnFAQs.clicked.connect(self.open_leftmenu)
+
+                # Dark Mode Button Connection
+                self.pushButton_13.clicked.connect(self.dark_mode_on)
+                self.pushButton_14.clicked.connect(self.dark_mode_on)
+                self.pushButton_15.clicked.connect(self.dark_mode_on)
+                self.pushButton_16.clicked.connect(self.dark_mode_on)
+                self.pushButton_19.clicked.connect(self.dark_mode_on)
+                self.pushButton_20.clicked.connect(self.dark_mode_on)
+                self.pushButton_21.clicked.connect(self.dark_mode_on)
+                self.pushButton_22.clicked.connect(self.dark_mode_on)
+                self.pushButton_24.clicked.connect(self.dark_mode_on)
+                self.pushButton_25.clicked.connect(self.dark_mode_on)
+                self.pushButton_26.clicked.connect(self.dark_mode_on)
+                self.pushButton_27.clicked.connect(self.dark_mode_on)
+                self.pushButton_28.clicked.connect(self.dark_mode_on)
+
+                #For Opening User Logout Menu
+                self.UserIconDashboard.clicked.connect(self.showUserMenuOnDashboard)
+                self.UserIconDashboard_2.clicked.connect(self.showUserMenuOnTeamReport)
+                self.UserIconOnPermanencyReport.clicked.connect(self.showUserMenuOnPermanency)
+                self.UserIconOnTaskAvailable.clicked.connect(self.showUserMenuOnTaskAvailable)
+                self.UserIconOnTaskAssignedReport.clicked.connect(self.showUserMenuOnAssingedTask)
+                self.UserIconOnAsiggningTask.clicked.connect(self.showUserMenuOnAssingingTask)
+                self.UserIconOnUpdateWork.clicked.connect(self.showUserMenuOnUpdateWork)
+                self.UserIconDashboard_3.clicked.connect(self.showUserMenuOnManageLeaves)
+                self.UserIconOnUserProfile.clicked.connect(self.showUserMenuOnProfile)
+                self.UserIconOnTDLProductivity.clicked.connect(self.showUserMenuOnTDL)
+                self.UserIconOnTDLProductivity_2.clicked.connect(self.showUserMenuOnEvaluation)
+                self.UserIconOnContactUs.clicked.connect(self.showUserMenuOnContactUs)
+                self.UserIconOnFAQs.clicked.connect(self.showUserMenuOnFAQs)
+
+                # Upper Menu Button Connection
+                self.UpperButtonClose.clicked.connect(self.closewindow)
+                self.UpperButtonMaximize.clicked.connect(self.maximizewindow)
+                self.UpperButtonMinimize.clicked.connect(self.minimzewindow)
+
+                # Open Notification Buttons Connection
+                self.NotificationIconDashboard.clicked.connect(self.open_notification_Board)
+                self.NotificationIconDashboard_2.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnPermanencyReport.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnTaskAvailable.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnTaskAssignedReport.clicked.connect(self.open_notification_Board)
+                self.pushButtonOnAsiggningTask.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnUpdateWork.clicked.connect(self.open_notification_Board)
+                self.NotificationIconDashboard_3.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnUserProfile.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnTDLProductivity.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnTDLProductivity_2.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnContactUs.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnFAQs.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnTaskAvailable.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnUpdateWork.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnUserProfile.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnContactUs.clicked.connect(self.open_notification_Board)
+                self.NotificationIconOnFAQs.clicked.connect(self.open_notification_Board)
+                self.pushButton_18.clicked.connect(self.on_click_Add_on_TDL) 
+
+                self.label_46.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+                self.label_19.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+
+                self.tableWidget_3.selectionModel().selectionChanged.connect(self.on_selectionChange)
+                self.pushButton_11.clicked.connect(self.On_Clicking_Download_Button_in_Recieved_Task)
+                self.pushButton_30.clicked.connect(self.On_Clicking_Update_Button_in_Recieved_Task)
+                self.pushButton.clicked.connect(self.Insert_data_at_assign_to_db)
+                self.pushButton_18.clicked.connect(self.Create_New_Custom_Task)
+                self.pushButton_10.clicked.connect(self.Insert_data_to_db_from_update_task)
+                self.comboBox_4.currentTextChanged.connect(self.on_combobox_changed)
+                self.comboBox_12.currentTextChanged.connect(self.on_combobox_changed)
+                self.pushButton_8.clicked.connect(self.On_click_submit_on_Manage_Leaves)
+                self.pushButton_34.clicked.connect(self.On_click_change_picture_on_profile)
+                self.pushButton_170.clicked.connect(self.Insert_data_to_db_from_update_designation)
+                self.BinaryData_from_manage_leaves = ""
+                
+
+                con = sql.connect(host='localhost', user='root', password='', db='fcs_writer')
+                cur = con.cursor()
+                cur.execute("Select writer_ID from writer where writer_email = %s",(self.Writer_Email))
+                record = cur.fetchall()
+                self.TL_ID = record[0][0]
+                con.commit()
+                cur.close()
+
+                print("Buttons are connected to their respected function, respectively.")
+        
+        def last_details(self):
+                self.label_46.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+                self.label_19.setPixmap(QtGui.QPixmap.scaled(QtGui.QPixmap(self.Writer_Image),300,300,aspectRatioMode= Qt.KeepAspectRatio))
+                self.label_43.setText(_translate("self.MainWindow", self.Team_Name))
+                self.Card1Value.setText(_translate(
+                "self.MainWindow", self.New_Members))
+                self.CardV2Value.setText(_translate(
+                "self.MainWindow", self.Total_Assignments))
+                self.label_41.setText(_translate("self.MainWindow", self.Evaluation_points))
+                self.label_135.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_10.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_137.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_138.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_139.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_141.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_140.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_142.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_150.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_143.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_26.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_145.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_34.setText(_translate(
+                "self.MainWindow", "Welcome "+self.Writer_Name+"! to your very own TDL(To-do List). Let us know what you have in mind today"))
+                self.label_151.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_148.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_149.setText(_translate("self.MainWindow", self.Writer_Name))
+                self.label_27.setText(_translate("self.MainWindow", self.Writer_Email))
+                self.label_28.setText(_translate("self.MainWindow", self.Writer_Contact_No))
+                self.label_29.setText(_translate("self.MainWindow", self.Writer_Gender))
+                self.label_30.setText(_translate("self.MainWindow", self.Writer_Age))
+                self.label_31.setText(_translate("self.MainWindow", self.Writer_Biography))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    ui = TDLMain(False, 'Team Mutavir',"5", '15', '35', 'Abdullah Tariq',f"F:\\Visual Code Stuff\\Design_For_FCS_Portal\\Images\\writer_image.png",'abe.fiesta','03156123499','Male','24','Still a leader, but doing everything to become better human being everyday.','Team Leader',"Team Mutavir")
+    ui.setupUi()
+    ui.MainWindow.show()
+    ui.function_to_be_called_to_add_data()
+    sys.exit(app.exec_())
